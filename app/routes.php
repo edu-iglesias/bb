@@ -17,6 +17,15 @@ Route::get('/', function()
 });
 
 Route::get('/atm','RouteController@atm');
+
 Route::get('/otc','RouteController@otc');
+Route::post('/otc','AuthController@login');
+
+Route::get('/otc/main','RouteController@main');
+
+Route::get('/otc/tellers','TellerController@index');
+
+
+
 
 

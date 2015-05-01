@@ -51,8 +51,8 @@
 			      	{{ Session::forget('logout_successful') }}
 			    @endif
 
-				{{ Form::text('accountNumber', null, array('class' => 'form-control', 'placeholder' => 'Account No.')) }}
-				{{ Form::password('PinNumber', array('class' => 'form-control', 'placeholder' => 'Pin No.')) }}
+				{{ Form::text('email', null, array('class' => 'form-control', 'placeholder' => 'Email')) }}
+				{{ Form::password('password', array('class' => 'form-control', 'placeholder' => 'Password')) }}
 				
 				<br/>
 				{{ Form::submit("Login", array('class' => 'btn btn-lg btn-primary btn-block')) }}

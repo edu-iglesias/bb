@@ -49,7 +49,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/" style="color:#008cba;">{{ HTML::image('images/logo2.png',"",['height'=>'25px', 'width'=>'25px']) }} WSA Library System</font></a>
+                    <a class="navbar-brand" href="/" style="color:#008cba;">{{ HTML::image('images/logo2.png',"",['height'=>'25px', 'width'=>'25px']) }} Web Synergy Bank</font></a>
                 </div>
 
                 <!-- div for side and top menu -->
@@ -57,22 +57,10 @@
                     <!-- Side Menu -->
                     <ul class="nav navbar-nav side-nav">
                         <li class="">
-                            <a href="/admin/dashboard" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-tachometer"></i> Dashboard</a>
+                            <a href="/admin/dashboard" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-user"></i></i> Profile Information</a>
                         </li>
                         <li class="">
-                            <a href="/admin/users" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"> <i class="fa fa-user"></i> Manage Users </a>
-                        </li>
-                        <li class="">
-                            <a href="/admin/books" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-book"></i> Manage Books</a>
-                        </li>
-                        <li class="">
-                            <a href="/admin/books/category" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-tags"></i> Manage Categories</a>
-                        </li>
-                        <li class="">
-                            <a href="/admin/books/borrowed" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-table"></i> Borrowed Books</a>
-                        </li>
-                        <li class="">
-                            <a href="/admin/archives" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-archive"></i> View Archives</a>
+                            <a href="/otc/tellers" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-users"></i></i> Manage Tellers</a>
                         </li>
                     </ul>
 

@@ -12,4 +12,9 @@ class RouteController extends BaseController {
 		return View::make('otc.index');
 	}
 
+	function main()
+	{
+		return View::make('otc.main');
+	}
+
 }
