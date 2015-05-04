@@ -122,4 +122,50 @@ class AuthController extends BaseController {
         }
     }
 
+    public function deposit()
+    {
+        $user = Auth::find(Auth::customer()->get()->id);
+        
+        
+        return View::make('atm.deposit')->with('user',$user);
+    }
+
+
+    public function storedeposit($id)
+    {
+       $inputs = Input::all();
+
+        $user = Accounts::find(Auth::customer()->get()->id);
+      
+        $current_amount = DB::table('accounts')->where('id',Auth::customer()->get()->id)->sum('balance');
+
+        $amount = $inputs['amount'];
+        
+        
+
+        $rules = array(     
+            'amount'  => 'Required|max:50000|numeric|between:500,50000',
+             
+        );
+
+
+        $validationResult = Validator::make($inputs, $rules);
+
+        if ( $validationResult->passes() ) 
+        {
+
+            $user->balance += $amount ;
+
+            $user->save();
+
+           
+            Session::put('success_user_created', 'You have successfully deposited to your account.');
+
+            return Redirect::to('/atm/deposit/{id}');
+        }
+        else
+        {
+            return Redirect::back()->withInput()->withErrors($validationResult);
+        }
+    }
 }

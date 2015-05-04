@@ -63,7 +63,7 @@
                             <a href="/atm/withdraw" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-user"></i></i> Withdraw</a>
                         </li>
                         <li class="">
-                            <a href="/atm/deposit" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-user"></i></i> Deposit</a>
+                            <a href="/atm/deposit/{id}" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-user"></i></i> Deposit</a>
                         </li>
                         <li class="">
                             <a href="#" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-user"></i></i> Transfer Account</a>
