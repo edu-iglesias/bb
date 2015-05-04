@@ -23,7 +23,16 @@ Route::post('/otc','AuthController@login');
 
 Route::get('/otc/main','RouteController@main');
 
+//TELLERS
 Route::get('/otc/tellers','TellerController@index');
+Route::get('/otc/tellers/create','TellerController@create');
+Route::post('/otc/tellers/create','TellerController@store');
+Route::get('/otc/tellers/edit/{id}','TellerController@edit');
+Route::post('/otc/tellers/edit/{id}','TellerController@update');
+Route::get('/otc/tellers/activate/{id}', 'TellerController@activate');
+Route::get('/otc/tellers/deactivate/{id}', 'TellerController@deactivate');
+
+
 
 //CUSTOMERS
 Route::get('/otc/customers','CustomerController@index');
