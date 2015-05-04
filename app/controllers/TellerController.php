@@ -193,7 +193,8 @@ class TellerController extends BaseController {
             $accountNumber = Input::get('txtAccountNumber');
             $amount = Input::get('txtAmount');
 
-            $account = accounts::where('account_number','=',$accountNumber)->first();
+            //$account = accounts::where('id','=',$accountNumber)->first();
+            $account = accounts::find($accountNumber);
 
             if(count($account) == 0)
             {
@@ -270,9 +271,12 @@ class TellerController extends BaseController {
 
         else
         {
-             $account = DB::table('accounts') 
-             ->where('account_number','=', $accountNumber)
-             ->first();
+             // $account = DB::table('accounts') 
+             // ->where('id','=', $accountNumber)
+             // ->first();
+
+            $account = accounts::find($accountNumber);
+
 
              Session::put('message', "Name: ". $account->last_name . "," . $account->first_name
                             . "<br> Type: ". $account->type
@@ -304,7 +308,10 @@ class TellerController extends BaseController {
             $accountNumber = Input::get('txtAccountNumber');
             $amount = Input::get('txtAmount');
 
-            $account = accounts::where('account_number','=',$accountNumber)->first();
+            //$account = accounts::where('id','=',$accountNumber)->first();
+
+            $account = accounts::find($accountNumber);
+
 
             if(count($account) == 0)
             {

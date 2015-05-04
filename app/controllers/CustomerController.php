@@ -56,7 +56,7 @@ class CustomerController extends BaseController {
 		if ( $validationResult->passes() ) 
 		{
 			$accounts = new Accounts;
-			$accounts->pin_number = Input::get('txtPinNumber');
+			$accounts->password = Hash::make(Input::get('txtPinNumber'));;
 			$accounts->first_name = Input::get('txtFname');
 			$accounts->last_name = Input::get('txtLname');
 			$accounts->email = Input::get('txtEmail');
@@ -91,10 +91,12 @@ class CustomerController extends BaseController {
 	{
       
 
-        $account = DB::table('accounts') 
-         //->join('roles', 'users.user_type', '=', 'roles.id')
-         ->where('account_number','=', $accountNumber)
-         ->first();
+        // $account = DB::table('accounts') 
+        //  //->join('roles', 'users.user_type', '=', 'roles.id')
+        //  ->where('account_number','=', $accountNumber)
+        //  ->first();
+
+        $account = accounts::find($accountNumber);
 
         return View::make('otc.edit_customer')->with('account',$account);
 	}
@@ -107,10 +109,22 @@ class CustomerController extends BaseController {
      //     ->where('account_number','=', $accountNumber)
      //     ->get();
 	    
-    	$account = accounts::where('account_number','=',$accountNumber)->first();
+    	$account = accounts::where('id','=',$accountNumber)->first();
+
+
+        if(Input::get('txtPinNumber') != "")
+        {
+            $password_rule = 'Required|numeric';
+            //$password_confirmation_rule = 'Required|min:5|max:20';
+        }
+        else
+        {
+            $password_rule = '';
+            //$password_confirmation_rule = '';
+        }
 
     	$rules = array(		
-			'txtPinNumber'  =>'Required',
+			'txtPinNumber'  => $password_rule,
 			'txtFname'  =>'Required',
 			'txtLname'  =>'Required',
 			'txtEmail'  =>'Required',
@@ -127,8 +141,11 @@ class CustomerController extends BaseController {
 		if ( $validationResult->passes() ) 
 		{
 
+			if(Input::get('txtPinNumber') != "")
+			{
+				$account->password = Hash::make(Input::get('txtPinNumber'));
+			}
 
-			$account->pin_number = Input::get('txtPinNumber');
 			$account->first_name = Input::get('txtFname');
 			$account->last_name = Input::get('txtLname');
 			$account->email = Input::get('txtEmail');
