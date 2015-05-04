@@ -20,9 +20,11 @@ Route::get('/atm','RouteController@atm');
 
 Route::get('/otc','RouteController@otc');
 Route::post('/otc','AuthController@login');
+Route::post('/atm','AuthController@login_atm');
 
 Route::get('/otc/profile','RouteController@profile');
 Route::get('/atm/profile','RouteController@profile_atm');
+
 
 //TELLERS
 Route::get('/otc/tellers','TellerController@index');
