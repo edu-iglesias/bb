@@ -58,6 +58,10 @@ Route::get('/otc/customers/edit/{accountNumber}', 'CustomerController@edit');
 Route::post('/otc/customers/edit/{accountNumber}', 'CustomerController@update');
 
 
+Route::get('/atm/changepass/{id}', 'AuthController@editpass');
+Route::post('/atm/changepass/{id}', 'AuthController@changepass');
+
+
 
 
 
