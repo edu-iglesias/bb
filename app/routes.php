@@ -65,6 +65,9 @@ Route::post('/atm/deposit/{id}', 'AuthController@storedeposit');
 Route::get('/atm/withdraw/{id}', 'AuthController@withdraw');
 Route::post('/atm/withdraw/{id}', 'AuthController@storewithdraw');
 
+Route::get('/atm/transfer/{id}', 'AuthController@transfer');
+Route::post('/atm/transfer/{id}', 'AuthController@storetransfer');
+
 
 
 

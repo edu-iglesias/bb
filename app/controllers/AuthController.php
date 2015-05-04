@@ -122,7 +122,7 @@ class AuthController extends BaseController {
         }
     }
 
-    public function deposit()
+    public function deposit($id)
     {
         $user = Auth::find(Auth::customer()->get()->id);
         
@@ -154,14 +154,127 @@ class AuthController extends BaseController {
         if ( $validationResult->passes() ) 
         {
 
+            $trans = new transaction;
+            $trans->account_number = Auth::customer()->get()->id;
+            $trans->transaction = 'deposit';
+            $trans->amount = $amount;
+
+
             $user->balance += $amount ;
 
             $user->save();
+            $trans->save();
 
            
             Session::put('success_user_created', 'You have successfully deposited to your account.');
 
             return Redirect::to('/atm/deposit/{id}');
+        }
+        else
+        {
+            return Redirect::back()->withInput()->withErrors($validationResult);
+        }
+    }
+
+    public function withdraw($id)
+    {
+        $user = Auth::find(Auth::customer()->get()->id);
+        
+        
+        return View::make('atm.withdraw')->with('user',$user);
+    }
+
+
+    public function storewithdraw($id)
+    {
+       $inputs = Input::all();
+
+        $user = Accounts::find(Auth::customer()->get()->id);
+      
+        $current_amount = DB::table('accounts')->where('id',Auth::customer()->get()->id)->sum('balance');
+
+        $amount = $inputs['amount'];
+        
+
+        
+
+        $rules = array(     
+            'amount'  => 'Required|max:10000|numeric|between:100,10000',
+             
+        );
+
+
+        $validationResult = Validator::make($inputs, $rules);
+
+        if ( $validationResult->passes() ) 
+        {
+            $trans = new transaction;
+            $trans->account_number = Auth::customer()->get()->id;
+            $trans->transaction = 'withdraw';
+            $trans->amount = $amount;
+
+
+            $user->balance -= $amount ;
+
+            $user->save();
+            $trans->save();
+           
+            Session::put('success_user_created', 'You have successfully withdrawed from your account.');
+
+            return Redirect::to('/atm/withdraw/{id}');
+        }
+        else
+        {
+            return Redirect::back()->withInput()->withErrors($validationResult);
+        }
+    }
+
+    public function transfer($id)
+    {
+        $user = Auth::find(Auth::customer()->get()->id);
+        
+        
+        return View::make('atm.transfer_account')->with('user',$user);
+    }
+
+
+    public function storetransfer($id)
+    {
+       $inputs = Input::all();
+
+        $user = Accounts::find(Auth::customer()->get()->id);
+      
+        $current_amount = DB::table('accounts')->where('id',Auth::customer()->get()->id)->sum('balance');
+
+        $amount = $inputs['amount'];
+        $transfer_acct = $inputs['acct'];
+        
+
+
+        $rules = array(     
+            'amount'  => 'Required|numeric|',
+             'acct'   => 'Required',
+        );
+
+
+        $validationResult = Validator::make($inputs, $rules);
+
+        if ( $validationResult->passes() ) 
+        {
+            $trans = new transaction;
+            $trans->account_number = Auth::customer()->get()->id;
+            $trans->transaction = 'transfer to '. $transfer_acct ;
+            $trans->amount = $amount;
+
+
+            $user->balance -= $amount ;
+
+            $user->save();
+            $trans->save();
+           
+            Session::put('success_user_created', 'You have successfully transferred your account.');
+
+            return Redirect::to('/atm/transfer/{id}');
         }
         else
         {
