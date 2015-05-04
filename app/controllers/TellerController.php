@@ -7,6 +7,7 @@ class TellerController extends BaseController {
         $users = DB::table('users') 
          ->join('roles', 'users.user_type', '=', 'roles.id')
          ->where('user_type','=','4')
+         ->select('*', 'users.id')
          ->get();
 
         return View::make('otc.list_of_tellers')->with('users',$users);
@@ -56,6 +57,25 @@ class TellerController extends BaseController {
         {
             return Redirect::back()->withInput()->withErrors($validationResult);
         }
+    }
+
+    public function activate($id)
+    {
+        $user = User::find($id);
+        $user->status = 1;
+        $user->update();
+        Session::put('status', "You have successfully activated the user.");
+        return Redirect::back();
+    }
+
+
+    public function deactivate($id)
+    {
+        $user = User::find($id);
+        $user->status = 0;
+        $user->update();
+        Session::put('status', "You have successfully deactivated the user.");
+        return Redirect::back();
     }
 
 }

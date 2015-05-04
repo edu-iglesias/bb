@@ -26,6 +26,10 @@ Route::get('/otc/main','RouteController@main');
 Route::get('/otc/tellers','TellerController@index');
 Route::get('/otc/tellers/create','TellerController@create');
 Route::post('/otc/tellers/create','TellerController@store');
+Route::get('/otc/tellers/activate/{id}', 'TellerController@activate');
+Route::get('/otc/tellers/deactivate/{id}', 'TellerController@deactivate');
+
+
 
 //CUSTOMERS
 Route::get('/otc/customers','CustomerController@index');
