@@ -47,13 +47,78 @@ class AuthController extends BaseController {
             Session::put('user_last_name',$user->last_name);
             Session::put('user_id',$user->account_number);
             
-            return Redirect::to('/otc/profile');
+            return Redirect::to('/atm/profile');
 
         }
         else
         {
             Session::put('login_failure','Authentication Failed. Please try again.');
             return  Redirect::back()->withInput();
+        }
+    }
+
+    public function editpass($id)
+    {
+        $user = Auth::find(Auth::customer()->get()->id);
+        
+        
+        return View::make('atm.edit_pass')->with('user',$user);
+    }
+
+    public function changepass($id)
+    {
+       $inputs = Input::all();
+
+        $user = Accounts::find($id);
+      
+        $userpass=$user->password;
+
+        $newpass = $inputs['newpass'];
+        
+        if(!Hash::check($inputs['oldpass'], $user->password))
+        {
+            $oldpass = 'Required|min:5|max:20|Confirmed';
+        }
+        else
+        {
+            $oldpass = '';
+        }
+
+        if($inputs['confirmpass'] != $inputs['newpass'])
+        {
+            $conf = 'Required|min:5|max:20|Confirmed';
+        }
+        else
+        {
+            $conf = '';
+        }
+       
+
+        $rules = array(     
+            'oldpass'  => $oldpass,
+            'newpass'  => 'Required|min:5|max:20',
+            'confirmpass'  => $conf,
+             
+        );
+
+
+        $validationResult = Validator::make($inputs, $rules);
+
+        if ( $validationResult->passes() ) 
+        {
+
+            $user->password = Hash::make(Input::get('newpass'));
+
+            $user->save();
+
+           
+            Session::put('success_user_created', 'You have successfully edited your password.');
+
+            return Redirect::to('/atm/profile');
+        }
+        else
+        {
+            return Redirect::back()->withInput()->withErrors($validationResult);
         }
     }
 
