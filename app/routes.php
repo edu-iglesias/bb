@@ -34,12 +34,15 @@ Route::get('/otc/tellers/edit/{id}','TellerController@edit');
 Route::post('/otc/tellers/edit/{id}','TellerController@update');
 Route::get('/otc/tellers/activate/{id}', 'TellerController@activate');
 Route::get('/otc/tellers/deactivate/{id}', 'TellerController@deactivate');
+
 Route::get('/otc/tellers/transactions', 'TellerController@transactions');
 Route::get('/otc/tellers/withdraw', 'TellerController@withdraw');
 Route::post('/otc/tellers/withdraw', 'TellerController@acceptWithdraw');
 Route::get('/otc/tellers/deposit', 'TellerController@deposit');
 Route::post('/otc/tellers/deposit', 'TellerController@acceptDeposit');
 Route::get('/otc/tellers/checkAccount/{accountNumber}', 'TellerController@checkAccount');
+
+Route::get('/otc/bank_manager/audit_trail', 'BankManagerController@auditTrail');
 
 //Bank Assistant
 Route::get('/otc/bank_assistant','BankAssistantController@index');

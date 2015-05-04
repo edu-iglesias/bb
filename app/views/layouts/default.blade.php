@@ -71,6 +71,12 @@
                         <li class="">
                             <a href="/otc/bank_manager" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-users"></i></i> Manage Bank Manager</a>
                         </li>
+                        <li class="">
+                            <a href="/otc/tellers/transactions" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-money"></i></i></i> Make Transactions</a>
+                        </li>
+                        <li class="">
+                            <a href="/otc/bank_manager/audit_trail" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-clipboard"></i></i></i> View Audit Trail</a>
+                        </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right navbar-user">
