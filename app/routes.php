@@ -47,8 +47,6 @@ Route::get('/otc/bank_assistant/edit/{id}','TellerController@edit');
 Route::post('/otc/bank_assistant/edit/{id}','TellerController@update');
 
 
-
-
 //CUSTOMERS
 Route::get('/otc/customers','CustomerController@index');
 Route::get('/otc/customersfixed','CustomerController@customerFixed');
