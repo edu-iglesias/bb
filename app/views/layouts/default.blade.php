@@ -63,14 +63,20 @@
                             <a href="/otc/tellers" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-users"></i></i> Manage Tellers</a>
                         </li>
                         <li class="">
-                            <a href="/otc/bank_assistant" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-users"></i></i> Manage Bank Assistant</a>
+                            <a href="/otc/bank_assistant" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-users"></i></i> Manage Bank Assistants</a>
+                        </li>
+                        <li class="">
+                            <a href="/otc/customers" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-users"></i></i> Manage Customers</a>
+                        </li>
+                        <li class="">
+                            <a href="/otc/bank_manager" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-users"></i></i> Manage Bank Manager</a>
                         </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right navbar-user">
                         <li class="dropdown user-dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-user"></i> {{ Session::get('admin_firstname') . " " . Session::get('admin_lastname') }}  <b class="caret" style="margin-top: 0;"></b>
+                                <i class="fa fa-user"></i> {{ Session::get('user_first_name') . " " . Session::get('user_last_name') }}  <b class="caret" style="margin-top: 0;"></b>
                             </a>
 
 

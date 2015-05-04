@@ -63,7 +63,7 @@ class BankAssistantController extends BaseController {
     public function edit($id)
     {
         $user = User::where('id','=',$id)
-            ->where('user_type','=','4')
+            ->where('user_type','=','3')
             ->first();
 
         if($user == null)

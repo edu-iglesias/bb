@@ -45,8 +45,8 @@ Route::get('/otc/tellers/checkAccount/{accountNumber}', 'TellerController@checkA
 Route::get('/otc/bank_assistant','BankAssistantController@index');
 Route::get('/otc/bank_assistant/create','BankAssistantController@create');
 Route::post('/otc/bank_assistant/create','BankAssistantController@store');
-Route::get('/otc/bank_assistant/edit/{id}','TellerController@edit');
-Route::post('/otc/bank_assistant/edit/{id}','TellerController@update');
+Route::get('/otc/bank_assistant/edit/{id}','BankAssistantController@edit');
+Route::post('/otc/bank_assistant/edit/{id}','BankAssistantController@update');
 
 
 //CUSTOMERS
