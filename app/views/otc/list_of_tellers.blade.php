@@ -20,6 +20,14 @@
         {{ Session::forget('status') }}
     @endif
 
+    @if(Session::get('success_user_created'))
+        <div class="alert alert-success fade in" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <center>{{ Session::get('success_user_created') }}</center>
+        </div>
+        {{ Session::forget('success_user_created') }}
+    @endif
+
     <div class="form-create col-md-12" >
         <table  id="colvixTable" border=0 class="table table-bordered">
 		        <thead>

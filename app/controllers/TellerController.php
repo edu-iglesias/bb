@@ -7,7 +7,7 @@ class TellerController extends BaseController {
         $users = DB::table('users') 
          ->join('roles', 'users.user_type', '=', 'roles.id')
          ->where('user_type','=','4')
-         ->select('*', 'users.id')
+         ->select('*', 'users.id','users.created_at')
          ->get();
 
         return View::make('otc.list_of_tellers')->with('users',$users);
@@ -57,6 +57,94 @@ class TellerController extends BaseController {
         {
             return Redirect::back()->withInput()->withErrors($validationResult);
         }
+    }
+
+    public function edit($id)
+    {
+        $user = User::where('id','=',$id)
+            ->where('user_type','=','4')
+            ->first();
+
+        if($user == null)
+        {
+            return Redirect::back();
+        }
+
+        Session::put('email', $user->email);
+        Session::put('FirstName',$user->first_name);
+        Session::put('LastName',$user->last_name);
+        Session::put('MiddleName',$user->middle_name);
+        Session::put('ContactNumber',$user->contact);
+        Session::put('gender',$user->gender);
+        Session::put('address',$user->address);
+
+        return View::make('otc.edit_teller');
+    }
+
+    public function update($id)
+    {
+
+        $inputs = Input::all();
+
+        $user = User::where('id','=',$id)
+            ->where('user_type','=','4')
+            ->first();
+
+        if(Input::get('email') == $user->email)
+        {
+            $email_rule = '';
+        }
+        else
+        {
+            $email_rule = 'Required|email|unique:users,email';
+        }
+
+        if(Input::get('password') != "")
+        {
+            $password_rule = 'Required|min:5|Confirmed|max:20';
+            $password_confirmation_rule = 'Required|min:5|max:20';
+        }
+        else
+        {
+            $password_rule = '';
+            $password_confirmation_rule = '';
+        }
+
+        $rules = array(     
+            'email'    => $email_rule,
+            'password'  => $password_rule,
+            'password_confirmation'=> $password_confirmation_rule,
+            'FirstName'     => 'Required|alpha_spaces|max:50',
+            'LastName'     => 'Required|alpha_spaces|max:50',
+            'MiddleName'     => 'Required|alpha_spaces|max:50',
+            'ContactNumber' => 'Required|digits:10|numeric',
+            'gender'  => 'Required|in:Male,Female,',
+            'address'  => 'Required',
+        );
+
+        $validationResult = Validator::make($inputs, $rules);
+
+        if ( $validationResult->passes() ) 
+        {
+            Session::put('success_user_created', 'You have successfully edited the user information.');
+
+            $user->email = Input::get('email');
+            $user->first_name = Input::get('FirstName');
+            $user->last_name = Input::get('LastName');
+            $user->middle_name = Input::get('MiddleName');
+            $user->user_type = "4";
+            $user->gender = Input::get('gender');
+            $user->contact = Input::get('ContactNumber');
+            $user->address = Input::get('address');
+            $user->save();
+
+            return Redirect::to('/otc/tellers');
+        }
+        else
+        {
+            return Redirect::back()->withInput()->withErrors($validationResult);
+        }
+
     }
 
     public function activate($id)
