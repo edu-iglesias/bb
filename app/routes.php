@@ -21,7 +21,8 @@ Route::get('/atm','RouteController@atm');
 Route::get('/otc','RouteController@otc');
 Route::post('/otc','AuthController@login');
 
-Route::get('/otc/main','RouteController@main');
+Route::get('/otc/profile','RouteController@profile');
+Route::get('/atm/profile','RouteController@profile_atm');
 
 //TELLERS
 Route::get('/otc/tellers','TellerController@index');
@@ -37,6 +38,14 @@ Route::post('/otc/tellers/withdraw', 'TellerController@acceptWithdraw');
 Route::get('/otc/tellers/deposit', 'TellerController@deposit');
 Route::post('/otc/tellers/deposit', 'TellerController@acceptDeposit');
 Route::get('/otc/tellers/checkAccount/{accountNumber}', 'TellerController@checkAccount');
+
+//Bank Assistant
+Route::get('/otc/bank_assistant','BankAssistantController@index');
+Route::get('/otc/bank_assistant/create','BankAssistantController@create');
+Route::post('/otc/bank_assistant/create','BankAssistantController@store');
+Route::get('/otc/bank_assistant/edit/{id}','TellerController@edit');
+Route::post('/otc/bank_assistant/edit/{id}','TellerController@update');
+
 
 
 

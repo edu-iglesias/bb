@@ -12,9 +12,14 @@ class RouteController extends BaseController {
 		return View::make('otc.index');
 	}
 
-	function main()
+	function profile()
 	{
-		return View::make('otc.main');
+		return View::make('otc.profile');
+	}
+
+	function profile_atm()
+	{
+		return View::make('atm.profile');
 	}
 
 }

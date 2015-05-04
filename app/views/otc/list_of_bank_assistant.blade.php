@@ -4,8 +4,8 @@
 
     <table border=0 width="100%">
         <tr>
-            <td><h2></i><i class="fa fa-users"></i>List of Tellers</h2></td>
-            <td align="right"><a href="/otc/tellers/create" class="btn btn-success" ><i class="fa fa-user-plus"></i> Add Teller</a></td>
+            <td><h2></i><i class="fa fa-users"></i>List of Bank Assistants</h2></td>
+            <td align="right"><a href="/otc/bank_assistant/create" class="btn btn-success" ><i class="fa fa-user-plus"></i> Add Bank Assistant</a></td>
         </tr>
     </table>
     
@@ -44,7 +44,7 @@
 		        <tbody>
 
 		            @if(count($users)==0)
-		                <tr><td colspan="7" align="center">No Archives Found.</td></tr>
+		                <tr><td colspan="6" align="center">No Archives Found.</td></tr>
 		            @endif
 
 		            @foreach($users as $user)
@@ -59,7 +59,7 @@
 
 		                    <td>
 		                    
-		                    	<a href="/otc/tellers/edit/{{ $user->id  }}" class="btn btn-info" data-toggle="tooltip" data-placement="top"  title="Edit User Information"><i class="fa fa-pencil-square-o"></i></a>
+		                    	<a href="/otc/bank_assistant/edit/{{ $user->id  }}" class="btn btn-info" data-toggle="tooltip" data-placement="top"  title="Edit User Information"><i class="fa fa-pencil-square-o"></i></a>
 		                    	@if($user->status == 1)
 		                        	<button class="btn btn-danger" type="button" data-toggle="modal" data-target="{{ '#deactivate_' . $user->id }}"  data-toggle="tooltip" data-placement="top"  title="Deactivate User"><i class="fa fa-ban"></i></button>
 		                        @else
