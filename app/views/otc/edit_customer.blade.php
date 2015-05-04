@@ -30,7 +30,7 @@
 	
 
 
-	<h2>Edit Customer Account:  {{$account->account_number}} </h2>
+	<h2>Edit Customer Account:  {{$account->id}} </h2>
 	<hr>
 
 	@if(Session::get('success_customer_created'))
@@ -48,7 +48,7 @@
 
 		<div class="forms col-md-12">
 			<div class="col-md-3 form-group @if ($errors->has('txtPinNumber')) has-error @endif">
-		       	{{ Form::text('txtPinNumber',  $account->pin_number,array('class' => 'form-control', 'placeholder' => 'Pin Number','maxlength'=>'50')) }}
+		       	{{ Form::text('txtPinNumber',  '',array('class' => 'form-control', 'placeholder' => 'Pin Number','maxlength'=>'50')) }}
 		        @if ($errors->has('txtPinNumber')) <i><p class="help-block" style="margin-left:5px">{{ $errors->first('txtPinNumber') }}</p></i> @endif
 		    </div>
 		</div>	
