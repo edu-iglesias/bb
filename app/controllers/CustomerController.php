@@ -4,12 +4,25 @@ class CustomerController extends BaseController {
 
 	public function index()
 	{
-        $accounts = DB::table('accounts') 
+        $accountsCredit = DB::table('accounts') 
          //->join('roles', 'users.user_type', '=', 'roles.id')
          ->where('type','=','Credit')
          ->get();
 
-        return View::make('otc.list_of_customers')->with('accounts',$accountsCredit);
+        return View::make('otc.list_of_customers')->with('accountsCredit',$accountsCredit);
+        										  
+	}
+
+	public function customerFixed()
+	{
+
+         $accountsFixed = DB::table('accounts') 
+         //->join('roles', 'users.user_type', '=', 'roles.id')
+         ->where('type','=','Fixed')
+         ->get();
+
+        return View::make('otc.list_of_customersfixed')->with('accountsFixed',$accountsFixed);
+        										  
 	}
 
 	public function create()
@@ -72,6 +85,72 @@ class CustomerController extends BaseController {
 			//return $messages = $validationResult->getMessages()->all();
 			return Redirect::back()->withInput()->withErrors($validationResult);
 		}
+	}
+
+	public function edit($accountNumber)
+	{
+      
+
+        $account = DB::table('accounts') 
+         //->join('roles', 'users.user_type', '=', 'roles.id')
+         ->where('account_number','=', $accountNumber)
+         ->first();
+
+        return View::make('otc.edit_customer')->with('account',$account);
+	}
+
+	public function update($accountNumber)
+    {
+    	$inputs = Input::all();
+
+    	// $account = DB::table('accounts') 
+     //     ->where('account_number','=', $accountNumber)
+     //     ->get();
+	    
+    	$account = accounts::where('account_number','=',$accountNumber)->first();
+
+    	$rules = array(		
+			'txtPinNumber'  =>'Required',
+			'txtFname'  =>'Required',
+			'txtLname'  =>'Required',
+			'txtEmail'  =>'Required',
+			'ddlGender'  =>'Required',
+			'txtContact'  =>'Required|numeric',
+			'txtBalance'  =>'Required|numeric',
+			'ddlType'  =>'Required',
+			'txtAddress'  =>'Required',
+		);
+
+
+		$validationResult = Validator::make($inputs, $rules);
+
+		if ( $validationResult->passes() ) 
+		{
+
+
+			$account->pin_number = Input::get('txtPinNumber');
+			$account->first_name = Input::get('txtFname');
+			$account->last_name = Input::get('txtLname');
+			$account->email = Input::get('txtEmail');
+			$account->gender = Input::get('ddlGender');
+			$account->contact = Input::get('txtContact');
+			$account->balance = Input::get('txtBalance');
+			$account->type = Input::get('ddlType');
+			$account->life_span = Input::get('txtDateSpan');
+			$account->address = Input::get('txtAddress');
+			
+			$account->save();
+
+	        
+			if(Input::get('ddlType') == "Credit")
+	        	return Redirect::to('/otc/customers');
+	        else
+	        	return Redirect::to('/otc/customersfixed');
+	    }
+	    else
+	    {
+	    	return Redirect::back()->withInput()->withErrors($validationResult);
+	    }
 	}
 
 }

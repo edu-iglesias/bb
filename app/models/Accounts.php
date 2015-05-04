@@ -7,5 +7,5 @@ class Accounts extends Eloquent {
 	 
 	protected $table = 'accounts';
 
-
+	protected $primaryKey ='account_number';
 }

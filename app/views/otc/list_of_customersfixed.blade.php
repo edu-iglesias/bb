@@ -11,13 +11,22 @@
 			}
 		</style>
 
-	
+		<script >
+		
+		    $(function () {
+    			
+    			$("#ddlType").val("Fixed");
+
+			});
+
+
+	</script>
 
 	</head>
 
     <table border=0 width="100%">
         <tr>
-            <td><h2></i><i class="fa fa-users"></i> Customers to Credit Account</h2></td>
+            <td><h2></i><i class="fa fa-users"></i> Customers to Fixed Account</h2></td>
             <td align="right"><a href="/otc/customers/create" class="btn btn-success" ><i class="fa fa-user-plus"></i> Create Customer Account</a></td>
         </tr>
     </table>
@@ -34,7 +43,7 @@
     @endif
 
     <div class="form-create col-md-12">
-    	<select class="form-control" id="ddlType" onchange="getCustomers()">
+    	<select class="form-control" id="ddlType" onchange="getCustomers()" width="30%">
     		<option value="Credit">Credit</option>
     		<option value="Fixed">Fixed</option>
     	</select>
@@ -54,7 +63,8 @@
 			                <th width="8%">Gender</th>
 			                <th width="10%">Address</th>
 			                <th width="9.5%">Contact</th>
-			                <th width="8.5%">Balance</th>	
+			                <th width="8.5%">Balance</th>				                
+			                <th width="7.5%">Life Span</th>
 			                <th width="7.5%">Status</th>
 			                <th width="9%">Date Created</th>
 			                <th width="11%"></th>
@@ -62,26 +72,27 @@
 			        </thead>
 			        <tbody>
 
-			            @if(count($accountsCredit)==0)
+			            @if(count($accountsFixed)==0)
 			                <tr><td colspan="12" align="center">No Archives Found.</td></tr>
 			            @endif
 
-			            @foreach($accountsCredit as $accountsCredit)
+			            @foreach($accountsFixed as $accountsFixed)
 
 			                <tr>
-			                    <td>{{ $accountsCredit->account_number; }}</td>
-			                    <td>{{ $accountsCredit->pin_number; }}</td>
-			                    <td>{{ $accountsCredit->last_name. "," .$accountsCredit->first_name; }}</td>			                   
-			                    <td>{{ $accountsCredit->email }}</td>
-			                    <td>{{ $accountsCredit->gender }}</td>
-			                    <td>{{ $accountsCredit->address }}</td>
-			                    <td>{{ $accountsCredit->contact }}</td>
-			                    <td>{{ $accountsCredit->balance }}</td>		       
-			                    <td align="center">@if($accountsCredit->status == 1) {{HTML::image('images/yes.png')}} 
+			                    <td>{{ $accountsFixed->account_number; }}</td>
+			                    <td>{{ $accountsFixed->pin_number; }}</td>
+			                    <td>{{ $accountsFixed->last_name. "," .$accountsFixed->first_name; }}</td>			                   
+			                    <td>{{ $accountsFixed->email }}</td>
+			                    <td>{{ $accountsFixed->gender }}</td>
+			                    <td>{{ $accountsFixed->address }}</td>
+			                    <td>{{ $accountsFixed->contact }}</td>
+			                    <td>{{ $accountsFixed->balance }}</td>		
+			                    <td>{{ $accountsFixed->life_span }}</td>		       
+			                    <td align="center">@if($accountsFixed->status == 1) {{HTML::image('images/yes.png')}} 
 			                    				   @else {{HTML::image('images/no.png')}} @endif</td>
-			                    <td>{{ $accountsCredit->created_at }}</td>
+			                    <td>{{ $accountsFixed->created_at }}</td>
 			                    <td>
-			                    	<a href="/otc/customers/edit/{{$accountsCredit->account_number}}" class="btn btn-info">edit</a>
+			                    	<a href="/otc/customers/edit/{{$accountsFixed->account_number}}" class="btn btn-info">edit</a>
 			                    	
 			                    </td>
 			                </tr>     
@@ -98,16 +109,13 @@
 		    	if($("#ddlType").val() == "Credit")
 		    	{
 		       		window.location.assign("/otc/customers");
+		       		$("#ddlType").val("Credit");
 		       	}
 		       	else
 		       	{
-		       		window.location.assign("/otc/customersfixed")
-
-		       	}
-
-				
-				
-		       
+		       		window.location.assign("/otc/customersfixed");
+		       		$("#ddlType").val("Fixed");
+		       	}  
 
 		    }
  </script>

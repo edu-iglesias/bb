@@ -27,8 +27,14 @@ Route::get('/otc/tellers','TellerController@index');
 
 //CUSTOMERS
 Route::get('/otc/customers','CustomerController@index');
+Route::get('/otc/customersfixed','CustomerController@customerFixed');
 Route::get('/otc/customers/create', 'CustomerController@create');
 Route::post('/otc/customers/create', 'CustomerController@store');
+Route::get('/otc/customers/edit/{accountNumber}', 'CustomerController@edit');
+Route::post('/otc/customers/edit/{accountNumber}', 'CustomerController@update');
+
+
+
 
 
 
