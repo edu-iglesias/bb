@@ -5,7 +5,7 @@
     <table border=0 width="100%">
         <tr>
             <td><h2></i><i class="fa fa-users"></i> Tellers</h2></td>
-            <td align="right"><a href="/admin/books/create" class="btn btn-success" ><i class="fa fa-user-plus"></i> Add Teller</a></td>
+            <td align="right"><a href="/otc/tellers/create" class="btn btn-success" ><i class="fa fa-user-plus"></i> Add Teller</a></td>
         </tr>
     </table>
     

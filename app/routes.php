@@ -24,6 +24,8 @@ Route::post('/otc','AuthController@login');
 Route::get('/otc/main','RouteController@main');
 
 Route::get('/otc/tellers','TellerController@index');
+Route::get('/otc/tellers/create','TellerController@create');
+Route::post('/otc/tellers/create','TellerController@store');
 
 //CUSTOMERS
 Route::get('/otc/customers','CustomerController@index');
