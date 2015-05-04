@@ -23,7 +23,7 @@ class CreateAccountsTable extends Migration {
 			$table->string('address', 255);
 			$table->string('contact', 15);
 			$table->string('balance', 255);
-			$table->string('type', 5);
+			$table->string('type', 10);
 			$table->string('life_span', 50);
 			$table->integer('status')->default(1);
 			$table->timestamps();
