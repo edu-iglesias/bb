@@ -3,7 +3,7 @@
 @section('content')
 
 
-	<h2> Edit a Teller User</h2>
+	<h2> Edit a Bank Assistant User</h2>
 	<hr>
 
 	

@@ -3,7 +3,7 @@
 @section('content')
 
 
-	<h2> Create User</h2>
+	<h2>Create a Teller User</h2>
 	<hr>
 
 	@if(Session::get('success_user_created'))

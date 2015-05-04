@@ -59,12 +59,6 @@
                         <li class="">
                             <a href="/admin/dashboard" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-user"></i></i> Profile Information</a>
                         </li>
-                        <li class="">
-                            <a href="/otc/tellers" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-users"></i></i> Manage Tellers</a>
-                        </li>
-                        <li class="">
-                            <a href="/otc/bank_assistant" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-users"></i></i> Manage Bank Assistant</a>
-                        </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right navbar-user">
