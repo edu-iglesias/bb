@@ -52,7 +52,7 @@
 			    @endif
 
 				{{ Form::text('accountNumber', null, array('class' => 'form-control', 'placeholder' => 'Account No.')) }}
-				{{ Form::password('PinNumber', array('class' => 'form-control', 'placeholder' => 'Pin No.')) }}
+				{{ Form::password('pinNumber', array('class' => 'form-control', 'placeholder' => 'Pin No.')) }}
 				
 				<br/>
 				{{ Form::submit("Login", array('class' => 'btn btn-lg btn-primary btn-block')) }}
