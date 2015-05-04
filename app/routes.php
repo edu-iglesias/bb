@@ -63,7 +63,13 @@ Route::post('/otc/customers/edit/{accountNumber}', 'CustomerController@update');
 
 Route::get('/atm/changepass/{id}', 'AuthController@editpass');
 Route::post('/atm/changepass/{id}', 'AuthController@changepass');
+Route::get('/atm/deposit/{id}', 'AuthController@deposit');
+Route::post('/atm/deposit/{id}', 'AuthController@storedeposit');
+Route::get('/atm/withdraw/{id}', 'AuthController@withdraw');
+Route::post('/atm/withdraw/{id}', 'AuthController@storewithdraw');
 
+Route::get('/atm/transfer/{id}', 'AuthController@transfer');
+Route::post('/atm/transfer/{id}', 'AuthController@storetransfer');
 
 
 
