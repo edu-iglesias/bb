@@ -1,5 +1,13 @@
 @extends('layouts.default')
 
+@section('header')
+
+    {{ HTML::script('datepicker_range/foundation-datepicker.js')}}
+    {{ HTML::style('datepicker_range/foundation-datepicker.css')}}
+
+@stop
+
+
 @section('content')
 
     <table border=0 width="100%">
@@ -9,7 +17,6 @@
         </tr>
     </table>
     
-
     <hr>
 
     @if(Session::get('status'))
@@ -28,6 +35,17 @@
         {{ Session::forget('success_user_created') }}
     @endif
 
+    <form class="form ajax" action="summary/changeDate" method="post" role="form" class="form-inline">
+        <div class="form-group col-md-9">
+            <div class="input-daterange input-group" id="datepicker" data-date="{{ date('Y-m-d') }}T" data-date-format="yyyy-mm-dd">
+                <input type="text" class="form-control" name="start" value="" id="dpd1" style="text-align: center" placeholder="Click to select date" onchange="checkInput(this.value,this.id)">
+                <span class="input-group-addon" style="vertical-align: top;height:20px">to</span>
+                <input type="text" class="form-control" name="end" value="" id="dpd2" style="text-align: center"  placeholder="Click to select date" onchange="checkInput(this.value,this.id)">
+            </div>
+        </div>
+        {{ Form::submit('Apply', array('class' => 'btn btn-success col-md-3','onclick'=>'hideAlert()')) }}
+    </form>
+
     <div class="form-create col-md-12" >
         <table  id="colvixTable" border=0 class="table table-bordered">
 		        <thead>
@@ -36,7 +54,7 @@
 		                <th>Account No.</th>
 		                <th>Transaction</th>
 		                <th>Amount</th>
-		                <!-- <th>Total Balance</th> -->
+		                <th>Total Balance</th>
 		                <th>Date</th>
 		            </tr>
 		        </thead>
@@ -53,7 +71,7 @@
 		                    <td>{{ $trans->account_number }}</td>
 		                    <td>{{ $trans->transaction }}</td>
 		                    <td>{{ $trans->amount }}</td>
-		               <!--      <td>{{ $trans->amount }}</td> -->
+		                    <td>{{ $trans->total_balance }}</td>
 		                    <td>{{ $trans->created_at }}</td>
 
 		                </tr>     
@@ -63,5 +81,62 @@
 	    </table>
 	</div>
 
+@stop
 
+@section('footer')
+
+
+
+<script>
+    $(function () {
+        // implementation of disabled form fields
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate() + 1, 0, 0, 0, 0);
+                
+        var checkin = $('#dpd1').fdatepicker(
+        {
+            onRender: function (date) 
+            {
+                return date.valueOf() > now.valueOf() ? 'disabled' : '';
+            }
+        }).on('changeDate', function (ev) {
+        if (ev.date.valueOf() > checkout.date.valueOf()) 
+        {
+            var newDate = new Date(ev.date)
+            newDate.setDate(newDate.getDate() + 1);
+            checkout.update(newDate);
+        }
+            checkin.hide();
+            $('#dpd2')[0].focus();
+            }).data('datepicker');
+                
+        var checkout = $('#dpd2').fdatepicker({
+            onRender: function (date) {
+            // return date.valueOf() < checkin.date.valueOf() ? 'disabled' : '';
+                if(date.valueOf() < checkin.date.valueOf() || date.valueOf() > now.valueOf())
+                {
+                    return 'disabled';
+                }
+
+            }
+        }).on('changeDate', function (ev) {
+            checkout.hide();
+        }).data('datepicker');
+    });
+
+    function checkInput(value,inputId)
+    {
+
+        var dateInput = new Date(value);
+        var dateTodayTemp = document.getElementById('date_today').value;
+        var dateToday = new Date(dateTodayTemp);
+        if(dateInput > dateToday)
+        {
+            document.getElementById('invalidDate').style.display = 'block';
+            document.getElementById("dpd1").value = dateTodayTemp;
+            document.getElementById("dpd2").value = dateTodayTemp;
+
+        }
+    }
+</script>
 @stop
