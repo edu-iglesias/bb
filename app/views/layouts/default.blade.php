@@ -59,24 +59,36 @@
                         <li class="">
                             <a href="/admin/dashboard" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-user"></i></i> Profile Information</a>
                         </li>
+                        @if( Session::get('user_type') == 2)
                         <li class="">
                             <a href="/otc/tellers" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-users"></i></i> Manage Tellers</a>
                         </li>
+                        @endif
+                        @if( Session::get('user_type') == 2)
                         <li class="">
                             <a href="/otc/bank_assistant" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-users"></i></i> Manage Bank Assistants</a>
                         </li>
+                        @endif
+                        @if( Session::get('user_type') == 3)
                         <li class="">
                             <a href="/otc/customers" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-users"></i></i> Manage Customers</a>
                         </li>
+                        @endif
+                        @if( Session::get('user_type') == 1)
                         <li class="">
                             <a href="/otc/bank_manager" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-users"></i></i> Manage Bank Manager</a>
                         </li>
+                        @endif
+                        @if( Session::get('user_type') == 4)
                         <li class="">
-                            <a href="/otc/tellers/transactions" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-money"></i></i></i> Make Transactions</a>
+                            <a href="/otc/transactions" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-money"></i></i></i> Make Transactions</a>
                         </li>
+                        @endif
+                        @if( Session::get('user_type') == 2)
                         <li class="">
                             <a href="/otc/bank_manager/audit_trail" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-clipboard"></i></i></i> View Audit Trail</a>
                         </li>
+                        @endif
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right navbar-user">

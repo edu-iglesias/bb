@@ -248,10 +248,7 @@ class TellerController extends BaseController {
 
             }
 
-
-            
             return Redirect::back();
-
         }
         else
         {
@@ -261,8 +258,6 @@ class TellerController extends BaseController {
 
     public function checkAccount($accountNumber)
     {
-       
-
         if($accountNumber == 0)
         {
             Session::put('message', "Account Number is REQUIRED!");

@@ -18,6 +18,7 @@ class CreateTransactionTable extends Migration {
 			$table->integer('account_number');
 			$table->string('transaction');
 			$table->string('amount');
+			$table->string('total_balance');
 			$table->timestamps();
 		});
 	}

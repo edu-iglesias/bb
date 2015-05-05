@@ -18,6 +18,7 @@ class AuthController extends BaseController {
             Session::put('user_first_name',$user->first_name);
             Session::put('user_last_name',$user->last_name);
             Session::put('user_id',$user->id);
+            Session::put('user_type',$user->user_type);
             
 			return Redirect::to('/otc/profile');
 
@@ -46,6 +47,9 @@ class AuthController extends BaseController {
             Session::put('user_first_name',$user->first_name);
             Session::put('user_last_name',$user->last_name);
             Session::put('user_id',$user->account_number);
+            //Session::put('user_type',$user->account_number);
+
+            
             
             return Redirect::to('/atm/profile');
 
@@ -142,7 +146,6 @@ class AuthController extends BaseController {
         $amount = $inputs['amount'];
         
         
-
         $rules = array(     
             'amount'  => 'Required|max:50000|numeric|between:500,50000',
              
@@ -195,9 +198,6 @@ class AuthController extends BaseController {
 
         $amount = $inputs['amount'];
         
-
-        
-
         $rules = array(     
             'amount'  => 'Required|max:10000|numeric|between:100,10000',
              

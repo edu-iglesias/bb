@@ -88,3 +88,10 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+// Entrust::routeNeedsRole( 'otc/bank_managers/*', array('Admin'), Redirect::to('/otc'));
+// Entrust::routeNeedsRole( 'otc/bank_assistants/*', array('Bank Manager'), Redirect::to('/otc'));
+// Entrust::routeNeedsRole( 'otc/tellers/*', array('Bank Manager'), Redirect::to('/otc'));
+// Entrust::routeNeedsRole( 'otc/customers/*', array('Teller'), Redirect::to('/otc'));
+
+// Entrust::routeNeedsRole( 'user/*', array('Student','Faculty'), Redirect::to('/user'), false );
