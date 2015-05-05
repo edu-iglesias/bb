@@ -1,22 +1,22 @@
 <?php
 
-class BankAssistantController extends BaseController {
+class BankManagerController extends BaseController {
 	  
 
 	public function index()
 	{
 		$users = DB::table('users') 
          ->join('roles', 'users.user_type', '=', 'roles.id')
-         ->where('user_type','=','3')
+         ->where('user_type','=','2')
          ->select('*', 'users.id','users.created_at')
          ->get();
 
-        return View::make('otc.list_of_bank_assistant')->with('users',$users);
+        return View::make('otc.list_of_bank_manager')->with('users',$users);
 	}
 
 	public function create()
     {
-        return View::make('otc.create_bank_assistant');
+        return View::make('otc.create_bank_manager');
     }
 
     public function store()
@@ -63,7 +63,7 @@ class BankAssistantController extends BaseController {
     public function edit($id)
     {
         $user = User::where('id','=',$id)
-            ->where('user_type','=','3')
+            ->where('user_type','=','4')
             ->first();
 
         if($user == null)
@@ -79,7 +79,7 @@ class BankAssistantController extends BaseController {
         Session::put('gender',$user->gender);
         Session::put('address',$user->address);
 
-        return View::make('otc.edit_bank_assistant');
+        return View::make('otc.edit_bank_manager');
     }
 
     public function update($id)
@@ -139,7 +139,7 @@ class BankAssistantController extends BaseController {
             $user->address = Input::get('address');
             $user->save();
 
-            return Redirect::to('/otc/bank_assistant');
+            return Redirect::to('/otc/bank_manager');
         }
         else
         {

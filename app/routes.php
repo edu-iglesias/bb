@@ -37,8 +37,17 @@ Route::get('/otc/tellers/deactivate/{id}', 'TellerController@deactivate');
 Route::get('/otc/bank_assistant','BankAssistantController@index');
 Route::get('/otc/bank_assistant/create','BankAssistantController@create');
 Route::post('/otc/bank_assistant/create','BankAssistantController@store');
-Route::get('/otc/bank_assistant/edit/{id}','TellerController@edit');
-Route::post('/otc/bank_assistant/edit/{id}','TellerController@update');
+Route::get('/otc/bank_assistant/edit/{id}','BankAssistantController@edit');
+Route::post('/otc/bank_assistant/edit/{id}','BankAssistantController@update');
+
+
+
+//Bank Managers
+Route::get('/otc/bank_manager','BankManagerController@index');
+Route::get('/otc/bank_manager/create','BankManagerController@create');
+Route::post('/otc/bank_manager/create','BankManagerController@store');
+Route::get('/otc/bank_manager/edit/{id}','TellerController@edit');
+Route::post('/otc/bank_manager/edit/{id}','TellerController@update');
 
 
 
