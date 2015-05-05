@@ -57,7 +57,16 @@
                     <!-- Side Menu -->
                     <ul class="nav navbar-nav side-nav">
                         <li class="">
-                            <a href="/admin/dashboard" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-user"></i></i> Profile Information</a>
+                            <a href="/atm/profile" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-user"></i></i> Profile Information</a>
+                        </li>
+                        <li class="">
+                            <a href="/atm/withdraw/{id}" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-user"></i></i> Withdraw</a>
+                        </li>
+                        <li class="">
+                            <a href="/atm/deposit/{id}" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-user"></i></i> Deposit</a>
+                        </li>
+                        <li class="">
+                            <a href="/atm/transfer/{id}" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-user"></i></i> Transfer Account</a>
                         </li>
                     </ul>
 

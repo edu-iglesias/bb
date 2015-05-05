@@ -56,7 +56,7 @@
 			        <thead>
 			            <tr>
 			                <th width="9%">Account Number</th>
-			                <th width="9%">Pin Number</th>
+			                
 			                <th width="11%">Name</th>
 			                <!-- <th width="11%">Last Name</th> -->
 			                <th width="11%">Email</th>
@@ -73,14 +73,14 @@
 			        <tbody>
 
 			            @if(count($accountsFixed)==0)
-			                <tr><td colspan="12" align="center">No Archives Found.</td></tr>
+			                <tr><td colspan="11" align="center">No Archives Found.</td></tr>
 			            @endif
 
 			            @foreach($accountsFixed as $accountsFixed)
 
 			                <tr>
-			                    <td>{{ $accountsFixed->account_number; }}</td>
-			                    <td>{{ $accountsFixed->pin_number; }}</td>
+			                    <td>{{ $accountsFixed->id; }}</td>
+			                    
 			                    <td>{{ $accountsFixed->last_name. "," .$accountsFixed->first_name; }}</td>			                   
 			                    <td>{{ $accountsFixed->email }}</td>
 			                    <td>{{ $accountsFixed->gender }}</td>
@@ -91,8 +91,8 @@
 			                    <td align="center">@if($accountsFixed->status == 1) {{HTML::image('images/yes.png')}} 
 			                    				   @else {{HTML::image('images/no.png')}} @endif</td>
 			                    <td>{{ $accountsFixed->created_at }}</td>
-			                    <td>
-			                    	<a href="/otc/customers/edit/{{$accountsFixed->account_number}}" class="btn btn-info">edit</a>
+			                    <td align="center">
+			                    	<a href="/otc/customers/edit/{{$accountsFixed->id}}" class="btn btn-info">edit</a>
 			                    	
 			                    </td>
 			                </tr>     

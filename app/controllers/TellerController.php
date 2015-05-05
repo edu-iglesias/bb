@@ -166,4 +166,189 @@ class TellerController extends BaseController {
         return Redirect::back();
     }
 
+    public function transactions()
+    {
+        return View::make('otc.tellers_transaction');
+    }
+
+    public function withdraw()
+    {
+        
+        return View::make('otc.tellers_transaction_withdraw');
+    }
+
+    public function acceptWithdraw()
+    {
+        $inputs = Input::all();
+
+        $rules = array(     
+            'txtAccountNumber'    => 'Required|numeric',
+            'txtAmount'  =>'Required|numeric',
+        );
+
+        $validationResult = Validator::make($inputs, $rules);
+
+        if ( $validationResult->passes() ) 
+        {
+            $accountNumber = Input::get('txtAccountNumber');
+            $amount = Input::get('txtAmount');
+
+            //$account = accounts::where('id','=',$accountNumber)->first();
+            $account = accounts::find($accountNumber);
+
+            if(count($account) == 0)
+            {
+                Session::put('message', "Account Number is wrong");
+            }
+
+            else if($amount > $account->balance)
+            {
+
+                Session::put('message', "The amount you wish to withdraw is greater than your account balance (PHP ". $account->balance .").");
+            }
+
+            else if($amount < 100)
+            {
+
+                Session::put('message', "The minimum amount for withdrawal is PHP 100");
+            }
+
+            else if($account->type == "Fixed")
+            {
+                $transaction = new transaction;
+                $transaction->account_number = Input::get('txtAccountNumber');
+                $transaction->amount = Input::get('txtAmount');
+                $transaction->transaction = "Withdrawal";
+                $transaction->save();
+
+                $currentBalance = $account->balance - $amount;
+
+                $account->status = 0;
+                $account->save();
+
+                Session::put('message', "Account closed. This is a fixed account.");
+
+            }
+
+
+            else
+            {
+                $transaction = new transaction;
+                $transaction->account_number = Input::get('txtAccountNumber');
+                $transaction->amount = Input::get('txtAmount');
+                $transaction->transaction = "Withdrawal";
+                $transaction->save();
+
+                $currentBalance = $account->balance - $amount;
+
+                $account->balance = $currentBalance;
+                $account->save();
+
+                Session::put('message', "Successfully withdraw, current balance is (PHP ". $currentBalance .").");
+
+            }
+
+
+            
+            return Redirect::back();
+
+        }
+        else
+        {
+            return Redirect::back()->withInput()->withErrors($validationResult);
+        }
+    }
+
+    public function checkAccount($accountNumber)
+    {
+       
+
+        if($accountNumber == 0)
+        {
+            Session::put('message', "Account Number is REQUIRED!");
+            return Redirect::back();
+        }
+
+        else
+        {
+             // $account = DB::table('accounts') 
+             // ->where('id','=', $accountNumber)
+             // ->first();
+
+            $account = accounts::find($accountNumber);
+
+
+             Session::put('message', "Name: ". $account->last_name . "," . $account->first_name
+                            . "<br> Type: ". $account->type
+                            . "<br> Current Balance: PHP ". $account->balance);
+
+            return Redirect::back();
+        }
+    }
+
+    public function deposit()
+    {
+        
+        return View::make('otc.tellers_transaction_deposit');
+    }
+
+    public function acceptDeposit()
+    {
+        $inputs = Input::all();
+
+        $rules = array(     
+            'txtAccountNumber'    => 'Required|numeric',
+            'txtAmount'  =>'Required|numeric',
+        );
+
+        $validationResult = Validator::make($inputs, $rules);
+
+        if ( $validationResult->passes() ) 
+        {
+            $accountNumber = Input::get('txtAccountNumber');
+            $amount = Input::get('txtAmount');
+
+            //$account = accounts::where('id','=',$accountNumber)->first();
+
+            $account = accounts::find($accountNumber);
+
+
+            if(count($account) == 0)
+            {
+                Session::put('message', "Account Number is wrong");
+            }
+
+            else if($amount < 500)
+            {
+
+                Session::put('message', "The minimum amount for deposit is PHP 500");
+            }
+
+            else
+            {
+                $transaction = new transaction;
+                $transaction->account_number = Input::get('txtAccountNumber');
+                $transaction->amount = Input::get('txtAmount');
+                $transaction->transaction = "Deposit";
+                $transaction->save();
+
+                $currentBalance = $account->balance + $amount;
+
+                $account->balance = $currentBalance;
+                $account->save();
+
+                Session::put('message', "Successfully deposit, current balance is (PHP ". $currentBalance .").");
+
+            }
+
+
+            
+            return Redirect::back();
+
+        }
+        else
+        {
+            return Redirect::back()->withInput()->withErrors($validationResult);
+        }
+    }
 }

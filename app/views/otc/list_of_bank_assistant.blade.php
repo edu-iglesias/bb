@@ -44,7 +44,7 @@
 		        <tbody>
 
 		            @if(count($users)==0)
-		                <tr><td colspan="6" align="center">No Archives Found.</td></tr>
+		                <tr><td colspan="7" align="center">No User Found.</td></tr>
 		            @endif
 
 		            @foreach($users as $user)

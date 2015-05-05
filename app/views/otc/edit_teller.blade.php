@@ -22,7 +22,7 @@
 
 		<div class="forms col-md-12">
 			<div class="col-md-6 form-group @if ($errors->has('email')) has-error @endif">
-		        {{ Form::text('email',Session::get('email'),array('class' => 'form-control', 'placeholder' => 'Email','maxlength'=>'50')) }}
+		        {{ Form::text('email',Session::get('email')	,array('class' => 'form-control', 'placeholder' => 'Email','maxlength'=>'50')) }}
 		        @if ($errors->has('email')) <i><p class="help-block" style="margin-left:5px">{{ $errors->first('email') }}</p></i> @endif
 		    </div>
 		</div>

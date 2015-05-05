@@ -20,9 +20,11 @@ Route::get('/atm','RouteController@atm');
 
 Route::get('/otc','RouteController@otc');
 Route::post('/otc','AuthController@login');
+Route::post('/atm','AuthController@login_atm');
 
 Route::get('/otc/profile','RouteController@profile');
 Route::get('/atm/profile','RouteController@profile_atm');
+
 
 //TELLERS
 Route::get('/otc/tellers','TellerController@index');
@@ -33,6 +35,15 @@ Route::post('/otc/tellers/edit/{id}','TellerController@update');
 Route::get('/otc/tellers/activate/{id}', 'TellerController@activate');
 Route::get('/otc/tellers/deactivate/{id}', 'TellerController@deactivate');
 
+Route::get('/otc/tellers/transactions', 'TellerController@transactions');
+Route::get('/otc/tellers/withdraw', 'TellerController@withdraw');
+Route::post('/otc/tellers/withdraw', 'TellerController@acceptWithdraw');
+Route::get('/otc/tellers/deposit', 'TellerController@deposit');
+Route::post('/otc/tellers/deposit', 'TellerController@acceptDeposit');
+Route::get('/otc/tellers/checkAccount/{accountNumber}', 'TellerController@checkAccount');
+
+Route::get('/otc/bank_manager/audit_trail', 'BankManagerController@auditTrail');
+
 //Bank Assistant
 Route::get('/otc/bank_assistant','BankAssistantController@index');
 Route::get('/otc/bank_assistant/create','BankAssistantController@create');
@@ -41,15 +52,12 @@ Route::get('/otc/bank_assistant/edit/{id}','BankAssistantController@edit');
 Route::post('/otc/bank_assistant/edit/{id}','BankAssistantController@update');
 
 
-
 //Bank Managers
 Route::get('/otc/bank_manager','BankManagerController@index');
 Route::get('/otc/bank_manager/create','BankManagerController@create');
 Route::post('/otc/bank_manager/create','BankManagerController@store');
-Route::get('/otc/bank_manager/edit/{id}','TellerController@edit');
-Route::post('/otc/bank_manager/edit/{id}','TellerController@update');
-
-
+Route::get('/otc/bank_manager/edit/{id}','BankManagerController@edit');
+Route::post('/otc/bank_manager/edit/{id}','BankManagerController@update');
 
 
 //CUSTOMERS
@@ -59,6 +67,17 @@ Route::get('/otc/customers/create', 'CustomerController@create');
 Route::post('/otc/customers/create', 'CustomerController@store');
 Route::get('/otc/customers/edit/{accountNumber}', 'CustomerController@edit');
 Route::post('/otc/customers/edit/{accountNumber}', 'CustomerController@update');
+
+
+Route::get('/atm/changepass/{id}', 'AuthController@editpass');
+Route::post('/atm/changepass/{id}', 'AuthController@changepass');
+Route::get('/atm/deposit/{id}', 'AuthController@deposit');
+Route::post('/atm/deposit/{id}', 'AuthController@storedeposit');
+Route::get('/atm/withdraw/{id}', 'AuthController@withdraw');
+Route::post('/atm/withdraw/{id}', 'AuthController@storewithdraw');
+
+Route::get('/atm/transfer/{id}', 'AuthController@transfer');
+Route::post('/atm/transfer/{id}', 'AuthController@storetransfer');
 
 
 

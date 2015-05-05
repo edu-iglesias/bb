@@ -1,7 +1,6 @@
 <?php
 
 class BankManagerController extends BaseController {
-	  
 
 	public function index()
 	{
@@ -44,7 +43,7 @@ class BankManagerController extends BaseController {
             $user->first_name = Input::get('FirstName');
             $user->last_name = Input::get('LastName');
             $user->middle_name = Input::get('MiddleName');
-            $user->user_type = "3";
+            $user->user_type = "2";
             $user->gender = Input::get('gender');
             $user->contact = Input::get('ContactNumber');
             $user->address = Input::get('address');
@@ -63,7 +62,7 @@ class BankManagerController extends BaseController {
     public function edit($id)
     {
         $user = User::where('id','=',$id)
-            ->where('user_type','=','4')
+            ->where('user_type','=','2')
             ->first();
 
         if($user == null)
@@ -88,8 +87,10 @@ class BankManagerController extends BaseController {
         $inputs = Input::all();
 
         $user = User::where('id','=',$id)
-            ->where('user_type','=','3')
+            ->where('user_type','=','2')
             ->first();
+
+        //return $user;
 
         if(Input::get('email') == $user->email)
         {
@@ -133,7 +134,7 @@ class BankManagerController extends BaseController {
             $user->first_name = Input::get('FirstName');
             $user->last_name = Input::get('LastName');
             $user->middle_name = Input::get('MiddleName');
-            $user->user_type = "3";
+            $user->user_type = "2";
             $user->gender = Input::get('gender');
             $user->contact = Input::get('ContactNumber');
             $user->address = Input::get('address');
@@ -166,5 +167,17 @@ class BankManagerController extends BaseController {
         Session::put('status', "You have successfully deactivated the user.");
         return Redirect::back();
     }
+
+
+	public function auditTrail()
+	{
+		$transactions = DB::table('transactions')
+			->join('accounts','transactions.account_number','=','accounts.id')
+			->get();
+		
+		return View::make('otc.list_of_transactions')
+			->with('transactions',$transactions);
+	}
+
 
 }

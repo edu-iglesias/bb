@@ -59,7 +59,7 @@
 
 		                    <td>
 		                    
-		                    	<a href="/otc/bank_assistant/edit/{{ $user->id  }}" class="btn btn-info" data-toggle="tooltip" data-placement="top"  title="Edit User Information"><i class="fa fa-pencil-square-o"></i></a>
+		                    	<a href="/otc/bank_manager/edit/{{ $user->id  }}" class="btn btn-info" data-toggle="tooltip" data-placement="top"  title="Edit User Information"><i class="fa fa-pencil-square-o"></i></a>
 		                    	@if($user->status == 1)
 		                        	<button class="btn btn-danger" type="button" data-toggle="modal" data-target="{{ '#deactivate_' . $user->id }}"  data-toggle="tooltip" data-placement="top"  title="Deactivate User"><i class="fa fa-ban"></i></button>
 		                        @else

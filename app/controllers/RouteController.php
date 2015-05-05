@@ -14,7 +14,8 @@ class RouteController extends BaseController {
 
 	function profile()
 	{
-		return View::make('otc.profile');
+		$user = User::find(Session::get('user_id'));
+		return View::make('otc.profile')->with('user',$user);
 	}
 
 	function profile_atm()
