@@ -88,6 +88,9 @@ Route::post('/atm/passbook', 'AtmController@passbookChangeDate');
 
 Route::get('/logout', 'AuthController@logout');
 
+//Clearing Day
+
+Route::get('/otc/Clearing', 'ClearingController@CheckAccounts');
 
 
 

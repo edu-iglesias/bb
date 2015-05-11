@@ -223,6 +223,7 @@ class TellerController extends BaseController {
                 $transaction->amount = Input::get('txtAmount');
                 $transaction->transaction = "Withdrawal";
                 $transaction->total_balance = $currentBalance;
+                $transaction->type = "otc";
                 $transaction->save();
 
                 
@@ -245,6 +246,7 @@ class TellerController extends BaseController {
                 $transaction->amount = Input::get('txtAmount');
                 $transaction->transaction = "Withdrawal";
                 $transaction->total_balance = $currentBalance;
+                $transaction->type = "otc";
                 $transaction->save();
 
                 
@@ -265,6 +267,8 @@ class TellerController extends BaseController {
 
     public function checkAccount($accountNumber)
     {
+        //dd($accountNumber);
+
         if($accountNumber == 0)
         {
             Session::put('message', "Account Number is REQUIRED!");
@@ -345,6 +349,7 @@ class TellerController extends BaseController {
                 $transaction->amount = Input::get('txtAmount');
                 $transaction->transaction = "Deposit";
                 $transaction->total_balance = $currentBalance;
+                $transaction->type = "otc";
                 $transaction->save();
 
                 

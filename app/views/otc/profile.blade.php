@@ -1,7 +1,65 @@
 @extends('layouts.default')
 
 @section('content')
-	<h2> Profile Information </h2>
+
+	<script >
+		
+		    $(function () {
+
+    			var date = new Date();
+
+    			$("#check").hide();
+    			$("#check2").hide();
+    			
+    			if(date.getDate() == 28 && date.getHours() >= 15)
+    			//if(date.getDate() == 11 && date.getHours() >= 11)
+    			{
+    				$("#clearingDayLink").show();
+    				$("#clearingDayLink2").hide();
+	    		}
+	    		else
+	    		{
+	    			$("#clearingDayLink").hide();
+    				$("#clearingDayLink2").show();
+	    		}
+
+	    		//alert($("#check").text());
+
+	    		if($("#check").text() != "")
+	    		{
+	    			alert("Accounts Successfully Cleared For this Month");
+
+	    		}
+	    		else if($("#check2").text() != "")
+	    		{
+	    			alert($("#check2").text());
+
+	    		}
+
+			});
+
+
+	</script>
+
+	<table border=0 width="100%">
+        <tr>
+            <td>
+            	<h2></i><i class="fa fa-users"></i> Profile Information</h2>
+            	<p id="check">{{Session::get('ctr')}}</p>
+
+            	{{Session::put('ctr', '')}}
+
+            	<p id="check2">{{Session::get('msg')}}</p>
+
+            	{{Session::put('msg', '')}}
+            </td>
+            <td align="right">
+
+            	<a  class="btn btn-primary" id="clearingDayLink" href="/otc/Clearing">Clearing Day</a>
+            	<button  class="btn btn-default" id="clearingDayLink2" disabled>Clearing Day</button>
+            </td>
+        </tr>
+    </table>
 
 		<div class="form-create col-md-6" >
 			<div class="col-md-12">
@@ -80,7 +138,6 @@
 
 
 		</div>
-
 
 
 

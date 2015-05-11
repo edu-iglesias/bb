@@ -7,6 +7,15 @@
 			<div class="forms col-md-12">
 			<h3>Transfer Accounts</h3>
 			<hr>
+
+			@if(Session::get('success_user_created'))
+		      	<div class="alert alert-success fade in" role="alert">
+		        	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+		        	<center>{{ Session::get('success_user_created') }}</center>
+		      	</div>
+		      	{{ Session::forget('success_user_created') }}
+	    	@endif
+			
 			<?php $acc = DB::table('accounts')->where('type','credit')->get(); ?>
 			<?php $a = DB::table('accounts')->where('id',Auth::customer()->get()->id)->first();  ?>
 			
