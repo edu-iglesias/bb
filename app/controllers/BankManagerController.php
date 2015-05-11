@@ -179,5 +179,22 @@ class BankManagerController extends BaseController {
 			->with('transactions',$transactions);
 	}
 
+    public function auditTrailChangeDate()
+    {
+
+        $start = date('Y-m-d', strtotime(Input::get('start')));
+        $end = date('Y-m-d', strtotime(Input::get('end')));
+        $date_today = date('Y-m-d');
+
+        //return 'date start:' . $start . 'date end:' . $end;
+
+        $transactions = Transaction::whereBetween('transactions.created_at', array($start, $end))
+            ->join('accounts','transactions.account_number','=','accounts.id')
+            ->get();
+        
+       return View::make('otc.list_of_transactions')
+            ->with('transactions',$transactions);
+    }
+
 
 }

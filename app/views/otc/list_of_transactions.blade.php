@@ -9,6 +9,10 @@
 
 
 @section('content')
+    <?php 
+            $date_today = date('m/d/Y');
+            echo "<input type='hidden' value='$date_today' id='date_today'>";
+    ?>
 
     <table border=0 width="100%">
         <tr>
@@ -35,7 +39,7 @@
         {{ Session::forget('success_user_created') }}
     @endif
 
-    <form class="form ajax" action="summary/changeDate" method="post" role="form" class="form-inline">
+    {{ Form::open() }}
         <div class="form-group col-md-9">
             <div class="input-daterange input-group" id="datepicker" data-date="{{ date('Y-m-d') }}T" data-date-format="yyyy-mm-dd">
                 <input type="text" class="form-control" name="start" value="" id="dpd1" style="text-align: center" placeholder="Click to select date" onchange="checkInput(this.value,this.id)">
@@ -43,8 +47,8 @@
                 <input type="text" class="form-control" name="end" value="" id="dpd2" style="text-align: center"  placeholder="Click to select date" onchange="checkInput(this.value,this.id)">
             </div>
         </div>
-        {{ Form::submit('Apply', array('class' => 'btn btn-success col-md-3','onclick'=>'hideAlert()')) }}
-    </form>
+        {{ Form::submit('Apply', array('class' => 'btn btn-success col-md-3','onclick'=>'hideAlert()','id'=>'apply')) }}
+    {{ Form::close(); }}
 
     <div class="form-create col-md-12" >
         <table  id="colvixTable" border=0 class="table table-bordered">
@@ -88,7 +92,8 @@
 
 
 <script>
-    $(function () {
+    $(function () 
+    {
         // implementation of disabled form fields
         var nowTemp = new Date();
         var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate() + 1, 0, 0, 0, 0);
@@ -126,6 +131,7 @@
 
     function checkInput(value,inputId)
     {
+            //alert('test');
 
         var dateInput = new Date(value);
         var dateTodayTemp = document.getElementById('date_today').value;
@@ -137,6 +143,31 @@
             document.getElementById("dpd2").value = dateTodayTemp;
 
         }
+
+        var start = document.getElementById('dpd1').value;
+        var end = document.getElementById('dpd2').value;
+
+        //alert(start);
+        //alert(end);
+
+
+        if(start != '' && end != '')
+        {
+            //alert('bukas na dapat');
+            document.getElementById("apply").disabled = false;
+        }
+        else
+        {
+            //alert('sarado dapat');
+            document.getElementById("apply").disabled = true;
+        }
     }
+
+    $( document ).ready(function() {
+
+        document.getElementById("apply").disabled = true;
+     
+    });
+
 </script>
 @stop

@@ -43,6 +43,7 @@ Route::post('/otc/tellers/deposit', 'TellerController@acceptDeposit');
 Route::get('/otc/tellers/checkAccount/{accountNumber}', 'TellerController@checkAccount');
 
 Route::get('/otc/bank_manager/audit_trail', 'BankManagerController@auditTrail');
+Route::post('/otc/bank_manager/audit_trail', 'BankManagerController@auditTrailChangeDate');
 
 //Bank Assistant
 Route::get('/otc/bank_assistant','BankAssistantController@index');
