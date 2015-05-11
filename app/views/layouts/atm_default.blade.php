@@ -68,6 +68,9 @@
                         <li class="">
                             <a href="/atm/transfer/{id}" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-user"></i></i> Transfer Account</a>
                         </li>
+                        <li class="">
+                            <a href="/atm/passbook" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-clipboard"></i></i></i> View Audit Trail</a>
+                        </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right navbar-user">
@@ -80,7 +83,7 @@
 
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="/admin/logout"><i class="fa fa-sign-out"></i></i> Log Out</a>
+                                    <a href="/logout"><i class="fa fa-sign-out"></i></i> Log Out</a>
                                 </li>
                             </ul>
                         </li>

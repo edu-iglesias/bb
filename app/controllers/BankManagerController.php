@@ -173,7 +173,8 @@ class BankManagerController extends BaseController {
 	{
 		$transactions = DB::table('transactions')
 			->join('accounts','transactions.account_number','=','accounts.id')
-			->get();
+			->select('*', 'transactions.created_at')
+            ->get();
 		
 		return View::make('otc.list_of_transactions')
 			->with('transactions',$transactions);
@@ -190,6 +191,7 @@ class BankManagerController extends BaseController {
 
         $transactions = Transaction::whereBetween('transactions.created_at', array($start, $end))
             ->join('accounts','transactions.account_number','=','accounts.id')
+            ->select('*', 'transactions.created_at')
             ->get();
         
        return View::make('otc.list_of_transactions')

@@ -35,12 +35,12 @@ Route::post('/otc/tellers/edit/{id}','TellerController@update');
 Route::get('/otc/tellers/activate/{id}', 'TellerController@activate');
 Route::get('/otc/tellers/deactivate/{id}', 'TellerController@deactivate');
 
-Route::get('/otc/tellers/transactions', 'TellerController@transactions');
-Route::get('/otc/tellers/withdraw', 'TellerController@withdraw');
-Route::post('/otc/tellers/withdraw', 'TellerController@acceptWithdraw');
-Route::get('/otc/tellers/deposit', 'TellerController@deposit');
-Route::post('/otc/tellers/deposit', 'TellerController@acceptDeposit');
-Route::get('/otc/tellers/checkAccount/{accountNumber}', 'TellerController@checkAccount');
+Route::get('/otc/transactions', 'TellerController@transactions');
+Route::get('/otc/transactions/withdraw', 'TellerController@withdraw');
+Route::post('/otc/transactions/withdraw', 'TellerController@acceptWithdraw');
+Route::get('/otc/transactions/deposit', 'TellerController@deposit');
+Route::post('/otc/transactions/deposit', 'TellerController@acceptDeposit');
+Route::get('/otc/transactions/checkAccount/{accountNumber}', 'TellerController@checkAccount');
 
 Route::get('/otc/bank_manager/audit_trail', 'BankManagerController@auditTrail');
 Route::post('/otc/bank_manager/audit_trail', 'BankManagerController@auditTrailChangeDate');
@@ -81,6 +81,10 @@ Route::get('/atm/transfer/{id}', 'AuthController@transfer');
 Route::post('/atm/transfer/{id}', 'AuthController@storetransfer');
 
 
+Route::get('/atm/passbook', 'AtmController@passbook');
+
+
+Route::get('/logout', 'AuthController@logout');
 
 
 
