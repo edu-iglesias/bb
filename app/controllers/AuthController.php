@@ -170,11 +170,14 @@ class AuthController extends BaseController {
 
         if ( $validationResult->passes() ) 
         {
+            $currentBalance = $user->balance + $amount;
 
             $trans = new transaction;
             $trans->account_number = Auth::customer()->get()->id;
             $trans->transaction = 'deposit';
             $trans->amount = $amount;
+            $trans->total_balance = $currentBalance;
+            $trans->type = "atm";
 
 
             $user->balance += $amount ;
@@ -222,19 +225,58 @@ class AuthController extends BaseController {
 
         if ( $validationResult->passes() ) 
         {
-            $trans = new transaction;
-            $trans->account_number = Auth::customer()->get()->id;
-            $trans->transaction = 'withdraw';
-            $trans->amount = $amount;
+            $accountid = Auth::customer()->get()->id;
+
+            $date = date('Y-m-d');
+            $transactionCheck = DB::table('transactions') 
+             ->where('account_number', $accountid)
+             ->where('created_at','like', '%'.$date.'%')
+             ->where('transaction','withdraw')
+             ->where('type','atm')
+             ->get();
+
+             $ctrAmount = 0;
+
+            foreach($transactionCheck as $transactionCheck2)
+            {
+                $ctrAmount += $transactionCheck2->amount;
+            }
+
+            $total2 = $ctrAmount + $amount;
 
 
-            $user->balance -= $amount ;
+            if($total2 > 20000)
+            {
+                Session::put('success_user_created', 'You are only allowed to withdraw a PHP 20,000 per day in ATM, 
+                                        you already withdraw a PHP '. $ctrAmount);
+               
+            }
+            else if($amount > $user->balance)
+            {
+                Session::put('success_user_created', "The amount you wish to withdraw is greater than your account balance (PHP ". $user->balance .").");
+            }
 
-            $user->save();
-            $trans->save();
-           
-            Session::put('success_user_created', 'You have successfully withdrawed from your account.');
+            else
+            {
+                $currentBalance = $user->balance - $amount;
 
+                $trans = new transaction;
+                $trans->account_number = Auth::customer()->get()->id;
+                $trans->transaction = 'withdraw';
+                $trans->amount = $amount;
+                $trans->total_balance = $currentBalance;
+                $trans->type = "atm";
+
+
+                $user->balance -= $amount ;
+
+                $user->save();
+                $trans->save();
+               
+                Session::put('success_user_created', 'You have successfully withdrawed from your account.');
+
+                 
+            }
             return Redirect::to('/atm/withdraw/{id}');
         }
         else
@@ -275,11 +317,14 @@ class AuthController extends BaseController {
 
         if ( $validationResult->passes() ) 
         {
+            $currentBalance = $user->balance - $amount;
+
             $trans = new transaction;
             $trans->account_number = Auth::customer()->get()->id;
             $trans->transaction = 'transfer to '. $transfer_acct ;
             $trans->amount = $amount;
-
+            $trans->total_balance = $currentBalance;
+            $trans->type = "atm";
 
             $user->balance -= $amount ;
 

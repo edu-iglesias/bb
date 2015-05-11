@@ -6,7 +6,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Library System</title>
+        <title>Automated Banking System</title>
         {{ HTML::style('css/font-awesome.css') }}
         {{ HTML::style('css/bootstrap.css') }}
         {{ HTML::style('css/bootstrap.min.css') }}

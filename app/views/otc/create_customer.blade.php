@@ -104,7 +104,7 @@
 
 		<div class="forms col-md-12" style="margin-top:15px" id="divSpanDate">
 			<div class="col-md-3 form-group @if ($errors->has('txtLifeSpanDate')) has-error @endif">
-		       	<input type='Date' class="form-control" id="txtDateSpan" name="txtDateSpan"> 
+		       	<input type='Date' class="form-control" id="txtDateSpan" name="txtDateSpan" readonly> 
 		    </div>
 		</div>
 
@@ -130,10 +130,28 @@
 		    {
 
 		    	if($("#ddlType").val() == "Fixed")
-		       		$('#divSpanDate').show();
+		    	{
+		       		
+
+		       		var date = new Date();
+
+		       		var day = date.getDate();
+		       		var month = ("0" + (date.getMonth() + 1)).slice(-2);
+		       		var year = date.getFullYear() + 5;
+		       		
+
+		         //alert(month + "/" + day + "/" + year);
+
+		         	$('#txtDateSpan').val(year + "-" + month + "-" + day);
+
+		         	$('#divSpanDate').show();
+
+		       	}
 
 				else
+				{
 					$('#divSpanDate').hide();
+				}
 		       
 
 		    }

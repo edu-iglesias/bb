@@ -8,6 +8,13 @@
 			<h3>Deposit</h3>
 			<hr>
 			
+			@if(Session::get('success_user_created'))
+		      	<div class="alert alert-success fade in" role="alert">
+		        	<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+		        	<center>{{ Session::get('success_user_created') }}</center>
+		      	</div>
+		      	{{ Session::forget('success_user_created') }}
+	    	@endif
 			
 			<div class="forms col-md-12">
 			<div class="col-md-3 form-group @if ($errors->has('amount')) has-error @endif">

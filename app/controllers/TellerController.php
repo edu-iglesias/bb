@@ -215,14 +215,18 @@ class TellerController extends BaseController {
 
             else if($account->type == "Fixed")
             {
+                
+                $currentBalance = $account->balance - $amount;
+
                 $transaction = new transaction;
                 $transaction->account_number = Input::get('txtAccountNumber');
                 $transaction->amount = Input::get('txtAmount');
                 $transaction->transaction = "Withdrawal";
+                $transaction->total_balance = $currentBalance;
+                $transaction->type = "otc";
                 $transaction->save();
 
-                $currentBalance = $account->balance - $amount;
-
+                
                 $account->status = 0;
                 $account->save();
 
@@ -233,14 +237,19 @@ class TellerController extends BaseController {
 
             else
             {
+                $currentBalance = $account->balance - $amount;    
+
+                //dd($currentBalance);
+
                 $transaction = new transaction;
                 $transaction->account_number = Input::get('txtAccountNumber');
                 $transaction->amount = Input::get('txtAmount');
                 $transaction->transaction = "Withdrawal";
+                $transaction->total_balance = $currentBalance;
+                $transaction->type = "otc";
                 $transaction->save();
 
-                $currentBalance = $account->balance - $amount;
-
+                
                 $account->balance = $currentBalance;
                 $account->save();
 
@@ -258,6 +267,8 @@ class TellerController extends BaseController {
 
     public function checkAccount($accountNumber)
     {
+        //dd($accountNumber);
+
         if($accountNumber == 0)
         {
             Session::put('message', "Account Number is REQUIRED!");
@@ -272,10 +283,20 @@ class TellerController extends BaseController {
 
             $account = accounts::find($accountNumber);
 
+            if(count($account)==0)
+            {
+
+                Session::put('message', "Account Number Not Found!");
+
+            }
+
+            else
+            {
 
              Session::put('message', "Name: ". $account->last_name . "," . $account->first_name
                             . "<br> Type: ". $account->type
                             . "<br> Current Balance: PHP ". $account->balance);
+            }
 
             return Redirect::back();
         }
@@ -321,14 +342,17 @@ class TellerController extends BaseController {
 
             else
             {
+                $currentBalance = $account->balance + $amount;
+
                 $transaction = new transaction;
                 $transaction->account_number = Input::get('txtAccountNumber');
                 $transaction->amount = Input::get('txtAmount');
                 $transaction->transaction = "Deposit";
+                $transaction->total_balance = $currentBalance;
+                $transaction->type = "otc";
                 $transaction->save();
 
-                $currentBalance = $account->balance + $amount;
-
+                
                 $account->balance = $currentBalance;
                 $account->save();
 

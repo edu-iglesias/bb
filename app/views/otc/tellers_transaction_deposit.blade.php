@@ -49,7 +49,7 @@
 		            {{ Form::submit('Ok', ['id'=>'submit','class' => 'btn btn-success','style'=>'width:20%;']) }}
 
 		            <a class="btn btn-primary" onclick="GetAccountInfo()">Check Account</a>
-		            <a class="btn btn-default" href="/otc/tellers/transactions">Cancel</a>
+		            <a class="btn btn-default" href="/otc/transactions/">Cancel</a>
 		    </div>
 		</div> 
 
@@ -64,9 +64,9 @@
 		    	//alert("/otc/tellers/checkAccount/" + $("#txtAccountNumber").val());
 
 		    	if($("#txtAccountNumber").val() == "")
-		    		window.location.assign("/otc/tellers/checkAccount/0");
+		    		window.location.assign("/otc/transactions/checkAccount/0");
 		    	else
-		    		window.location.assign("/otc/tellers/checkAccount/" + $("#txtAccountNumber").val());
+		    		window.location.assign("/otc/transactions/checkAccount/" + $("#txtAccountNumber").val());
 
 		    }
  </script>

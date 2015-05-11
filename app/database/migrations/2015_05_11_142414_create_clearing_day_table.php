@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTransactionTable extends Migration {
+class CreateClearingDayTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +12,10 @@ class CreateTransactionTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('transactions', function(Blueprint $table)
+		Schema::create('clearing_day', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('account_number');
-			$table->string('transaction');
-			$table->string('type');
-			$table->string('amount');
-			$table->string('total_balance');
+			$table->string('cleared_by');
 			$table->timestamps();
 		});
 	}
@@ -31,7 +27,8 @@ class CreateTransactionTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('transactions');
+		Schema::drop('clearing_day');
 	}
 
 }
+

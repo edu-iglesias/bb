@@ -44,7 +44,7 @@ class CustomerController extends BaseController {
 			'txtEmail'  =>'Required',
 			'ddlGender'  =>'Required',
 			'txtContact'  =>'Required|numeric',
-			'txtBalance'  =>'Required|numeric',
+			'txtBalance'  =>'Required|numeric|min:10000',
 			'ddlType'  =>'Required',
 			'txtAddress'  =>'Required',
         	// 'author'=>'Required|max:70',
