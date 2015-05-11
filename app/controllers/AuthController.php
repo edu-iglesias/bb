@@ -15,6 +15,13 @@ class AuthController extends BaseController {
     	if (Auth::user()->attempt($userdata)) 
     	{
             $user = User::find(Auth::user()->get()->id);
+
+            if($user->status == 0)
+            {
+                Session::put('login_failure','Your account has been deactivated. Please contact authorized Personnel');
+                return  Redirect::back()->withInput();
+            }
+
             Session::put('user_first_name',$user->first_name);
             Session::put('user_last_name',$user->last_name);
             Session::put('user_id',$user->id);
@@ -44,10 +51,17 @@ class AuthController extends BaseController {
         if (Auth::customer()->attempt($userdata)) 
         {
             $user = Accounts::find(Auth::customer()->get()->id);
+
+            if($user->status == 0)
+            {
+                Session::put('login_failure','Your account has been deactivated. Please contact authorized Personnel');
+                return  Redirect::back()->withInput();
+            }
+
             Session::put('user_first_name',$user->first_name);
             Session::put('user_last_name',$user->last_name);
             Session::put('user_id',$user->account_number);
-            //Session::put('user_type',$user->account_number);
+            Session::put('user_account_number',$user->id);
 
             
             
@@ -280,5 +294,24 @@ class AuthController extends BaseController {
         {
             return Redirect::back()->withInput()->withErrors($validationResult);
         }
+    }
+
+
+    public function logout()
+    {
+
+        if(Session::get('user_type'))
+        {
+            $redirection = '/otc';
+        }
+        else
+        {
+            $redirection = '/atm';
+        }
+
+        Auth::logout();
+        Session::flush();
+        Session::put('logout_successful', 'You have successfully logout.');
+        return Redirect::to($redirection);
     }
 }

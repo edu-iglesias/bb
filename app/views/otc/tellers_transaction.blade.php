@@ -12,13 +12,13 @@
 		<table align="center">
 			<tr>
 				<td>
-					<a href="/otc/tellers/withdraw">
+					<a href="/otc/transactions/withdraw">
 						{{ HTML::image('images/withdraw.png', 'alt', array( 'width' => 150, 'height' => 150 )) }}
 					</a>
 				</td>
 				<td width="50"></td>
 				<td>
-					<a href="/otc/tellers/deposit">
+					<a href="/otc/transactions/deposit">
 						{{ HTML::image('images/deposit.png', 'alt', array( 'width' => 150, 'height' => 150 )) }}
 					</a>
 				</td>
@@ -27,12 +27,12 @@
 			<tr>
 				<td align="center">
 					<br/>
-					<a href="/otc/tellers/withdraw">Withdraw</a>
+					<a href="/otc/transactions/withdraw">Withdraw</a>
 				</td>
 				<td width="50"></td>
 				<td align="center">
 					<br/>
-					<a href="/otc/tellers/deposit">Deposit</a>
+					<a href="/otc/transactions/deposit">Deposit</a>
 				</td>
 			</tr>
 		</table>

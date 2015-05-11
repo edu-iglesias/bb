@@ -57,7 +57,7 @@
                     <!-- Side Menu -->
                     <ul class="nav navbar-nav side-nav">
                         <li class="">
-                            <a href="/admin/dashboard" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-user"></i></i> Profile Information</a>
+                            <a href="/otc/profile" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-user"></i></i> Profile Information</a>
                         </li>
                         @if( Session::get('user_type') == 2)
                         <li class="">
@@ -101,7 +101,7 @@
 
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="/admin/logout"><i class="fa fa-sign-out"></i></i> Log Out</a>
+                                    <a href="/logout"><i class="fa fa-sign-out"></i></i> Log Out</a>
                                 </li>
                             </ul>
                         </li>
