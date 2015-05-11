@@ -35,6 +35,7 @@ Route::post('/otc/tellers/edit/{id}','TellerController@update');
 Route::get('/otc/tellers/activate/{id}', 'TellerController@activate');
 Route::get('/otc/tellers/deactivate/{id}', 'TellerController@deactivate');
 
+// Transactions
 Route::get('/otc/transactions', 'TellerController@transactions');
 Route::get('/otc/transactions/withdraw', 'TellerController@withdraw');
 Route::post('/otc/transactions/withdraw', 'TellerController@acceptWithdraw');
@@ -82,6 +83,7 @@ Route::post('/atm/transfer/{id}', 'AuthController@storetransfer');
 
 
 Route::get('/atm/passbook', 'AtmController@passbook');
+Route::post('/atm/passbook', 'AtmController@passbookChangeDate');
 
 
 Route::get('/logout', 'AuthController@logout');

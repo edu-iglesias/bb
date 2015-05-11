@@ -1,4 +1,4 @@
-@extends('layouts.default')
+@extends('layouts.atm_default')
 
 @section('header')
 

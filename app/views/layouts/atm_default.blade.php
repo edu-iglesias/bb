@@ -69,7 +69,7 @@
                             <a href="/atm/transfer/{id}" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-user"></i></i> Transfer Account</a>
                         </li>
                         <li class="">
-                            <a href="/atm/passbook" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-clipboard"></i></i></i> View Audit Trail</a>
+                            <a href="/atm/passbook" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-clipboard"></i></i></i> View Pass Book</a>
                         </li>
                     </ul>
 
