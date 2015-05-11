@@ -16,8 +16,7 @@
 
     <table border=0 width="100%">
         <tr>
-            <td><h2></i><i class="fa fa-users"></i>List of Tellers</h2></td>
-            <td align="right"><a href="/otc/tellers/create" class="btn btn-success" ><i class="fa fa-user-plus"></i> Add Teller</a></td>
+            <td><h2></i><i class="fa fa-clipboard"></i> List of Transactions</h2></td>
         </tr>
     </table>
     
