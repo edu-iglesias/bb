@@ -1,146 +1,258 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
+<!doctype html>
 
-        <title>Automated Banking System</title>
-        {{ HTML::style('css/font-awesome.css') }}
-        {{ HTML::style('css/bootstrap.css') }}
-        {{ HTML::style('css/bootstrap.min.css') }}
-        {{ HTML::style('css/bootstrap-theme.min.css') }}
-        {{ HTML::style('css/sb-admin.css') }}
+<html>
+	<head>
+		<link rel="shortcut icon" href="https://crowdtogo.com/wp-content/themes/crowdtogo3/ico/favicon.png">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>@yield('title')</title>
+		<!-- jquery file is added below -->
+		{{ HTML::script('js/jquery/jquery.min.js') }}
+		
+		
 
-        {{ HTML::script('http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js') }}
-        {{ HTML::style('colvix/css/jquery.dataTables.css')}}
-        {{ HTML::style('colvix/css/dataTables.colVis.css')}}
-        {{ HTML::style('colvix/css/shCore.css')}}
-        
-        {{ HTML::script('colvix/js/jquery.js')}}
-        {{ HTML::script('colvix/js/jquery.dataTables.js')}}
-        {{ HTML::script('colvix/js/dataTables.colVis.js')}}
-        {{ HTML::script('colvix/js/shCore.js')}}
-        {{ HTML::script('colvix/js/demo.js')}}
+		<!-- Bootstrap core CSS -->
+	    {{ HTML::style('css/bootstrap.min.css') }}
+
+		<!-- Custom styles for bootstrap -->
+	    {{ HTML::style('css/overwrite.css') }}
+
+		<!-- Custom styles for fontawesome icon -->
+	    {{ HTML::style('css/font-awesome.css') }}
+
+	    <!-- Flexslider -->
+	    {{ HTML::style('css/flexslider.css') }}
+
+	    <!-- prettyPhoto -->	
+		{{ HTML::style('css/prettyPhoto.css') }}
+
+	    <!-- animate -->
+	    {{ HTML::style('css/animate.css') }}
+		
+	    <!-- Custom styles for this template -->
+	    {{ HTML::style('css/style.css') }}
+	    {{ HTML::style('css/custom.css') }}
+		
+		<!-- Font for this template -->
+	    {{ HTML::style('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700') }}
+		
+		<!-- Custom styles for template skin -->
+	    {{ HTML::style('skins/skin7/skin.css') }}
+
+	    <style>
+	    	#pass-strength-result {
+		    background-color: #eee;
+		    border-color: #ddd !important;
+		    border-style: solid;
+		    border-width: 1px;
+		    float: left;
+		    margin: 13px 5px 5px 1px;
+		    padding: 3px 5px;
+		    text-align: center;
+		    width: 200px;
+		}
+
+		#pass-strength-result.bad {
+		    background-color: #ffb78c;
+		    border-color: #ddd !important;
+		}
 
 
-        <script type="text/javascript" language="javascript" class="init">
-            $(document).ready(function() {
-                $('#colvixTable').DataTable( {
-                    dom: 'C<"clear">lfrtip'
-                } );
-            } );
-        </script>
+		#pass-strength-result.short {
+		    /* background-color: #ffa0a0; */
+		    background-color: #ffec8b;
+		    border-color: #ddd !important;
+		}
 
-        {{ HTML::style('css/custom.css') }}
-    
-        @yield('header')
-    </head>
+		#pass-strength-result.good {
+		    /* background-color: #ffec8b; */
+		    background-color: #c3ff88;
+		    border-color: #ddd !important;
+		}
 
-    <body>
-        <div id="wrapper">
-            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-                <!-- div for header with title -->
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/" style="color:#008cba;">{{ HTML::image('images/logo2.png',"",['height'=>'25px', 'width'=>'25px']) }} Web Synergy Bank</font></a>
-                </div>
+		#pass-strength-result.strong {
+		    /* background-color: #c3ff88; */
+		    background-color: #44a20b; 
+		    border-color: #ddd !important;
+		}
+		</style>
 
-                <!-- div for side and top menu -->
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <!-- Side Menu -->
-                    <ul class="nav navbar-nav side-nav">
-                        <li class="">
-                            <a href="/otc/profile" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-user"></i></i> Profile Information</a>
-                        </li>
-                        @if( Session::get('user_type') == 2)
-                        <li class="">
-                            <a href="/otc/tellers" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-users"></i></i> Manage Tellers</a>
-                        </li>
-                        @endif
-                        @if( Session::get('user_type') == 2)
-                        <li class="">
-                            <a href="/otc/bank_assistant" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-users"></i></i> Manage Bank Assistants</a>
-                        </li>
-                        @endif
-                        @if( Session::get('user_type') == 3)
-                        <li class="">
-                            <a href="/otc/customers" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-users"></i></i> Manage Customers</a>
-                        </li>
-                        @endif
-                        @if( Session::get('user_type') == 1)
-                        <li class="">
-                            <a href="/otc/bank_manager" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-users"></i></i> Manage Bank Manager</a>
-                        </li>
-                        @endif
-                        @if( Session::get('user_type') == 4)
-                        <li class="">
-                            <a href="/otc/transactions" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-money"></i></i></i> Make Transactions</a>
-                        </li>
-                        @endif
-                        @if( Session::get('user_type') == 2)
-                        <li class="">
-                            <a href="/otc/bank_manager/audit_trail" style="border-bottom: solid 1px rgba(0, 0, 0, 0.2);"><i class="fa fa-clipboard"></i></i></i> View Audit Trail</a>
-                        </li>
-                        @endif
-                    </ul>
+		@yield('header');
 
-                    <ul class="nav navbar-nav navbar-right navbar-user">
+	</head>
+
+	<body role="document"  >
+
+		<!-- Start navigation -->
+		<header id="crowdie-header">
+			<div class="navbar navbar-default" role="navigation">
+				<div class="container" style="padding-top: 10px">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#"><img src="../img/ctg-logo.png" alt="" /></a>
+					</div>
+
+					<div class="collapse navbar-collapse" style="margin-right:-80px !important;">
+						<ul class="nav navbar-nav navbar-right navbar-user">
                         <li class="dropdown user-dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-user"></i> {{ Session::get('user_first_name') . " " . Session::get('user_last_name') }}  <b class="caret" style="margin-top: 0;"></b>
+                               <i class="fa fa-bars fa-2x"> </i></b>
                             </a>
 
 
 
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="/logout"><i class="fa fa-sign-out"></i></i> Log Out</a>
+                                    <a href="/"><i class="fa fa-ticket"></i> Reservation</a>
+                                </li>
+                                <li>
+                                    <a href="/cancel"><i class="fa fa-times"></i> Cancellation</a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
-                </div>
-            </nav>
+					</div><!--/.nav-collapse -->
+				</div>
+			</div>
+		</header>
+		<!-- End navigation -->
+		
+		<section id="home" class="bgslider-wrapper">
+			<div id="animated-bg">
+				<div id="animated-bg2" class="bg-slider"></div>
+			</div>
+			<div class="home-contain">
+				<div class="container">
+					<div class="row wow fadeInDown" data-wow-delay="0.2s">
+						<div class="col-md-8 col-md-offset-2 home-headline">
+							<h4 style="margin-top: 20px;">@yield('headline')</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
 
-            <div id="page-wrapper">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div>
-                            @yield('content')
-                        </div>
-                    </div>
-                </div>
+		<!-- Start introduce -->
+		<section id="intro" class="contain colorbg">
+			<div class="container">
+				@yield('pagination')
+				<h4 class="form-header">@yield('form-header')</h4>
+				<div class="forms @yield('form-size') wow bounceInDown mainContent" data-wow-delay="0.2s">
+					@yield('content')
+				</div>
+				<br/><br/>
+			</div>
+		</section>
+		<!-- End introduce -->
+		
+		<!-- Start footer -->
+		<footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<a href="#home" class="totop wow rotateIn btn-scroll" data-wow-delay="0.4s" target="_blank"><i class="fa fa-chevron-up"></i></a>
+						<a href="#" class="social-network wow bounceInDown" data-wow-delay="0.2s" target="_blank"><i class="fa fa-facebook"></i></a>
+						<a href="#" class="social-network wow bounceInDown" data-wow-delay="0.4s" target="_blank"><i class="fa fa-twitter"></i></a>
+						<a href="#" class="social-network wow bounceInDown" data-wow-delay="0.8s" target="_blank"><i class="fa fa-linkedin"></i></a>
+					</div>
+				</div>
+			</div>
+			<div class="subfooter">
+				<p class="copyrigh">2014 &copy; Copyright <a href="#">Busy Buddies Airlines</a>.</p>
+				<p>All rights Reserved. Powered by <font color="#e74430">Laravel</font></p>
+			</div>
+		</footer>
+		<!-- End footer -->
 
-                <br/>
+		
+		<!-- Bootstrap core JavaScript
+	    ================================================== -->
+	    <!-- Placed at the end of the document so the pages load faster -->
+	    {{ HTML::script('js/jquery.min.js') }}
+	    {{ HTML::script('js/bootstrap.min.js') }}
 
-                <div class="container no-print" style="width: 100%">
-                    <br>
-                    <p class="text-muted" style="text-align: center; font-size: 11px;">Developed by 
-                        <a href="#" title="#">Web Synergy 2.0</a><br/>
-                        Powered by <a href="http://laravel.com/" style="color: #f47063">Laravel</a>.
-                    </p>
-                </div>
-            </div>
-        </div>
+		<!-- Fixed navigation -->
+		{{ HTML::script('js/navigation/jquery.smooth-scroll.js') }}
+		{{ HTML::script('js/navigation/navbar.js') }}
+		{{ HTML::script('js/navigation/waypoints.min.js') }}
 
-        <!-- JavaScript -->
+		<!-- WOW JavaScript -->
+		{{ HTML::script('js/wow.min.js') }}
+		
+		<!-- JavaScript bgSlider slider -->
+		{{ HTML::script('js/bgslider/bgSlider.js') }}
 
-        <script type="text/javascript">  
-            $(document).ready(function () {  
-                $('.dropdown-toggle').dropdown();  
-            });  
-       </script>  
+		<!-- Flexslider -->
+		{{ HTML::script('js/flexslider/jquery.flexslider.js') }}
+		{{ HTML::script('js/flexslider/setting.js') }}
 
-       {{ HTML::script('js/bootstrap.min.js') }}
+		<!-- prettyPhoto -->
+		{{ HTML::script('js/prettyPhoto/jquery.prettyPhoto.js') }}
+		{{ HTML::script('js/prettyPhoto/setting.js') }}
 
-       @yield('footer')
+		<!-- Contact validation js -->
+	    {{ HTML::script('js/validation.js') }}
+		
+		<!-- Custom JavaScript -->
+		{{ HTML::script('js/custom.js') }}
 
-    </body>
+		<!-- Datepicker -->
+		{{ HTML::style('datepicker/foundation-datepicker.css') }}
+		{{ HTML::script('datepicker/foundation-datepicker.js') }}
+
+		<!-- Masked Input -->
+		{{ HTML::script('js/jquery/jquery.maskedinput-1.3.1.min_.js') }}
+	   	<script type="text/javascript">
+		      jQuery(function($) {
+		         $.mask.definitions['~']='[+-]';
+		         $('#date').mask('99/99/9999');
+		         $('#phone').mask('(999) 999-9999');
+		         $('#phoneext').mask("(999) 999-9999? x99999");
+		         $("#tin").mask("99-9999999");
+		         $("#ssn").mask("999-99-9999");
+		         $("#product").mask("a*-999-a999",{placeholder:" ",completed:function(){alert("You typed the following: "+this.val());}});
+		         $("#eyescript").mask("~9.99 ~9.99 999");
+
+		         $("#zip").mask("99999");
+		         $('#birthdate').mask('99/99/9999');
+		         $('#license').mask('999-99-9999');
+		         $('.time').mask('bn:sn^m');
+		         $('#contact').mask('(999)-999-9999');
+		      });
+	   	</script>	
+
+	   	<script>
+	   		$(function() {
+	            $('form').bind('submit', function() {
+	                $(this).find('input:submit').attr('disabled', true);
+	            });
+	        });
+	   	</script>	
+
+
+
+		@yield('footer')
+
+		<!--Table sorter credit by Christian Bach.
+
+			Documentation written by Brian Ghidinelli, based on Mike Alsup's great documention.
+
+			John Resig for the fantastic jQuery-->
+	   	{{ HTML::script('js/table_sorter/jquery.tablesorter.min.js') }}
+	   	{{ HTML::script('js/table_sorter/docs.js') }}
+		{{ HTML::style('css/table_sorter/jq.css') }}
+		{{ HTML::style('css/table_sorter/theme/style.css') }}
+		<script type="text/javascript">
+		$(document).ready(function(){
+			if( $("#tablesorter-table") ){
+				$("#tablesorter-table").tablesorter();
+			}
+		});
+		</script>
+	</body>
+
 </html>

@@ -13,20 +13,11 @@ class DatabaseSeeder extends Seeder {
 
 		Eloquent::unguard();
 
-		$this->call('RoleSeeder');
-		$this->command->info('The Role table has been seeded.');
+		$this->call('FlightSeeder');
+		$this->command->info('The Flight table has been seeded.');
 
-		$this->call('AdminSeeder');
-		$this->command->info('The Admin user has been seeded.');
-
-		$this->call('BankManagerSeeder');
-		$this->command->info('The Bank Manager users has been seeded.');
-
-		$this->call('BankAssistantSeeder');
-		$this->command->info('The Bank Assistant user has been seeded.');
-
-		$this->call('TellerSeeder');
-		$this->command->info('The Teller user has been seeded.');
+		$this->call('SeatSeeder');
+		$this->command->info('The Seat table has been seeded.');
 
 		DB::statement('SET FOREIGN_KEY_CHECKS=1;'); // Return foreign key constraint
 	}

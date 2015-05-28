@@ -1,0 +1,9 @@
+.navbar{
+	min-height: 0;
+}
+.navbar-default .navbar-collapse{
+	float: left;
+}
+.dashboard-nav{
+	padding-left: 0px;
+}

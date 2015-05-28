@@ -1,27 +1,421 @@
-.form-create{
-	background: white;
-	padding: 45px 10px;
+/*body, #intro{
+	background: #80DBDD;
+}*/
+body, .colorbg, div.pp_default .pp_close:hover, .icon-social:hover, .pricing-price, .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:active, .subscribe-button:hover, .pager li > a:hover, .pager li > span:hover, .item-detail, .style2 .accordion-heading a:hover i, .style1 .accordion-heading a:hover, .btn-flat, #home .btn-flat:hover{
+	background-color: #F2F2F2 !important;
+}
+
+#crowdie-header{
+	height: 52px !important;
+}
+
+.navbar-brand{
+	margin-top: -20px;
+	max-width: 250px;
+}
+
+.navbar-brand img{
 	width: 100%;
-	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,.13);
-	box-shadow: 0 1px 3px rgba(0,0,0,.13);
+}
+.navbar{
+	min-height: 80px;
+}
+.home-contain{
+	height: 80px;
+	background: rgba(0, 0, 0, 0.2);
+}
+.bg-slider{
+	height: 80px;
+}
+.home-contain-2{
+	padding-bottom: 35px;
+	background: white;
+	color: #263740;
+}
+.home-headline h2{
+	margin-top: 18%;
+	letter-spacing: 5px;
+}
+.home-headline-2 h4{
+	font-weight: normal;
+	font-size:30px;
+	line-height:30px;
+	letter-spacing:7px;
+	margin-top: 40px;
+	text-align: center;
+}
+
+#intro{
+	padding-top: 40px;
+	padding-bottom: 100px;
+}
+
+.divider{
+	height: 135px;
+}
+
+.heading{
+	margin-top: 18px;
+}
+
+.heading span{
+	border-bottom: solid 2px rgb(211, 211, 211);
+}
+
+.features-icon{
+	width: 150px;
+}
+
+.contain-body{
+	height: 350px;
+}
+
+input.subscribe{
+	border: solid white;
+}
+.subscribe-button{
+	color: rgb(0, 195, 255);
+	background: #FFFFFF;
+}
+input#mce-EMAIL:focus {
+	border: solid white;
+}
+input#mc-embedded-subscribe:hover {
+	background: rgb(254, 255, 135);
+}
+::-webkit-input-placeholder {
+   color: rgba(255, 255, 255, 0.7);
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: rgba(255, 255, 255, 0.7);  
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: rgba(255, 255, 255, 0.7);  
+}
+
+:-ms-input-placeholder {  
+   color: rgba(255, 255, 255, 0.7);  
+}
+
+/**** Registration CSS ****/
+.mainContent{
+	float: none;
+	display: block;
 	margin: auto;
 }
-
-
-body {
-  /*background-color: #F5FEF2;*/
-  background-color: #e6e6e6;
-  	
-  padding-bottom: 0px;
+.forms{	
+	background: white;
+	/*padding: 50px 50px 60px 50px;*/
+	padding: 50px 50px 110px 50px;
+	box-shadow: 0px 3px 0px rgb(215, 215, 215);
+	border-radius: 2px;
+	border: solid 1px rgb(234, 234, 234);
 }
 
-.ColVis_collection
-{
-	margin-left:-4% !important;
-	margin-top:1% !important;
+.features-inner-body{
+	padding-bottom: 80px; 
 }
 
-table{
-    /* table-layout: fixed; */
-    word-break:break-word;
+.form-control{
+	border: 1px solid #D9DADC;
+	font-size: 15px;
+	padding: 22px;
+	color: #1B1B1B;
+}
+
+select.input-group.form-control{
+	height: auto;
+}
+.form-group{
+	color: rgb(101, 101, 101);
+}
+.form-header{
+	text-align: center;
+	color: rgb(27, 166, 223);
+}
+.btn-lg{
+	padding: 10px 30px 15px 30px;
+}
+
+.input-group .col-md-4,.list-group-item .input-group.col-md-4{
+	width: 33.33333333%;
+}
+
+@media (min-width: 992px) {
+	.col-md-6{
+		width: 50%;
+	}
+	.col-md-12{
+		width: 100%;
+	}
+}
+
+.input-group .col-md-8 {
+	width: 66.66666667%;
+}
+
+.form-control.col-md-6{
+	float: left;
+}
+
+.sbs{
+	float: left;
+	width: 100%;
+	margin-bottom: 35px;
+}
+
+.login-form{
+	min-height: 300px;
+}
+
+.has-error .form-control{
+	border: solid 2px #AB5044;
+}
+
+.navbar-default .navbar-nav li a{
+	border-top: none;
+}
+
+.btn-block+.btn-block{
+	margin-top: 0px;
+}
+.btn-success{
+	background-color: #22A9E1;
+	border-color: #22A9E1;
+	box-shadow: 0px 3px 0px rgb(28, 143, 190);
+}
+input.btn-success:hover{
+	background-color: #209ED2;
+	border-color: #209ED2;
+	box-shadow: 0px 3px 0px rgb(27, 135, 179);
+}
+input.btn-success:focus{
+	background-color: #1092C8;
+	border-color: #1092C8;
+	box-shadow: none;
+	margin-top: 3px;
+}
+
+.btn-danger{
+
+	border-color: #E0E0E0;
+	box-shadow: 0px 3px 0px rgb(197, 197, 197);
+	color: #fff;
+}
+.btn-danger:hover{
+	background-color: #D0D0D0;;
+	border-color: #D0D0D0;
+	box-shadow: 0px 3px 0px rgb(192, 192, 192);
+	color: rgb(100, 100, 100);
+}
+.btn-danger:focus, .btn-danger:active, .btn-danger.active{
+	background-color: #C7C7C7;;
+	border-color: #C7C7C7;
+	box-shadow: none;
+	margin-top: 3px;
+	color: rgb(100, 100, 100);
+}
+
+.input-group{
+	width: 100%;
+}
+
+.input-group .col-md-6{
+	width: 50% !important;
+}
+
+select.input-group{
+	border: 1px solid #D9DADC;
+	font-size: 15px;
+	padding: 11px 15px !important;
+	color: #1B1B1B;
+	box-shadow: inset 0.5px 1px 1px rgba(0, 0, 0, 0.16);
+	-webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+	transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+	line-height: 1.428571429;
+	vertical-align: middle;
+	background-color: #ffffff;
+	border-radius: 2px;
+}
+
+.rates{
+	float: left;
+	width: 100%;
+	background: rgb(250, 250, 250);
+	border: solid 1px rgb(229, 229, 229);
+}
+
+.rate-group{
+	/*float: left;*/
+	margin-top: 12px;
+	margin-bottom: 30px;
+	display: inline-table;
+}
+
+.rates p{
+	float: left;
+	margin-top: 15px;
+	font-size: 22px;
+}
+
+.rates select{
+	margin-top: 6px;
+}
+
+.nums{
+	width: 200px;
+	margin: auto;
+	display: block;
+	/*margin-bottom: 60px;*/
+	margin-bottom: 40px;
+}
+
+/*.deliv-form{
+	height: 370px;
+}*/
+
+.sbmt{
+	width: 40% !important;
+	float: right;
+}
+
+.sbmt-b{
+	width: 40% !important;
+	float: left;
+}
+.sbmt-div{
+	margin-bottom: 170px;
+}
+
+.disclaimer{
+	font-size: 12px;
+	width: 40%;
+	line-height: 14px;
+	margin: auto;
+	margin-top: 30px;
+}
+
+footer.login-ftr{
+	padding-top: 0;
+}
+
+.login-ftr{
+	margin-top: 0px;
+}
+
+.deactivated{
+	color: rgb(177, 177, 177);
+}
+
+a.btn.btn-lg.btn-success:hover {
+	background-color: #3AB9EE;
+	border: solid 2px #22A9E1;
+}
+
+
+@-moz-document url-prefix(){
+	.form-control{
+		padding: 5px 15px;
+	}
+	#step1-name{
+		margin-top: 25px;
+	}
+}
+
+@media (max-width: 990px) {
+	.col-md-6.wow{
+		width: 70%;
+		display: block;
+		margin: auto;
+		float: none !important;
+	}
+}
+
+@media (max-width: 767px) {
+	.col-md-6.wow{
+		width: 85%;
+	}
+}
+
+
+/* End of Registration CSS */
+
+@media (max-width: 990px) {
+	.mentor{
+		text-align: center;
+		margin: 50px;
+	}
+	#mentor-div{
+		margin: 50px 0 50px 0;;
+	}
+	.fa.fa-thumbs-up.icon-title.wow.rotateIn{
+		display: none;
+	}
+	.features-box{
+		margin-bottom: 0;
+	}
+	.disclaimer{
+		width: 80%;
+	}
+}
+@media (max-width: 767px) {
+	.navbar-brand img{
+		margin-top: 5px;
+	}
+	.subscribe-form{
+		width: 100%;
+	}
+	.sbmt-div{
+		margin-bottom: 60px;
+	}
+}
+
+@media (max-width: 575px) {
+	.input-group .sidebyside{
+		width: 100% !important;
+	}
+	.left-sbs{
+		margin-bottom: 15px !important;
+	}
+	.rates p{
+		text-align: center;
+	}
+	.rates select{
+		width: 100% !important;
+		margin-bottom: 25px;
+	}
+	.sbmt-div{
+		margin-bottom: 55px;
+	}
+	#step1-name{
+		margin-top: 75px;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	#intro{
+		padding-bottom: 40px;
+	}
+	.navbar-brand {
+		margin-top: -15px;
+		max-width: 70%;
+	}
+	.home-headline h4 {
+		font-size: 21px;
+		line-height: 20px;
+		letter-spacing: 5px;
+	}
+	.mainContent{
+		width: 100% !important;
+		padding: 20px;
+	}
+	.sbmt, .sbmt-b{
+		float: none !important;
+		width: 100% !important;
+	}
+	.sbmt-div{
+		margin-bottom: 10px;
+	}
 }
